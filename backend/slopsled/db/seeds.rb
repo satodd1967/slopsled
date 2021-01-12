@@ -69,3 +69,6 @@ o3 = Order.create(subtotal: "0", tax: "0", total: "0", customer: karen)
     li7 = LineItem.create(order: o3, dish: dish9)
     li8 = LineItem.create(order: o3, dish: dish10)
     li9 = LineItem.create(order: o3, dish: dish11)    
+
+
+# o.line_items.map {|li| li.price}
