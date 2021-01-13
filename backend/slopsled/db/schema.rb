@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_024120) do
   create_table "dishes", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.decimal "price"
+    t.float "price"
     t.string "image"
     t.integer "restaurant_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 2021_01_12_024120) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.decimal "subtotal"
-    t.decimal "tax"
-    t.decimal "total"
+    t.float "subtotal"
+    t.float "tax"
+    t.float "total"
     t.integer "customer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

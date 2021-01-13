@@ -68,7 +68,13 @@ o2 = Order.create(subtotal: "0", tax: "0", total: "0", customer: jojo)
 o3 = Order.create(subtotal: "0", tax: "0", total: "0", customer: karen)
     li7 = LineItem.create(order: o3, dish: dish9)
     li8 = LineItem.create(order: o3, dish: dish10)
-    li9 = LineItem.create(order: o3, dish: dish11)    
+    li9 = LineItem.create(order: o3, dish: dish11)
 
+Order.all.each do |order|
+    order.subtotal = ((order.line_items.map {|li| li.dish.price}).reduce {|price, n| n + price}).round(2)
+    order.tax = (order.subtotal * 1.08) - order.subtotal
+    order.total = order.subtotal + order.tax
+end
 
-# o.line_items.map {|li| li.price}
+# (o.line_items.map {|li| li.dish.price}).reduce {|price, n| n + price}
+# (Order.all.map {|order| order.line_items.map {|li| li.dish.price}}).reduce {|price, n| n + price}
