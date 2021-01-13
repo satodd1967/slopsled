@@ -72,9 +72,9 @@ o3 = Order.create(subtotal: "0", tax: "0", total: "0", customer: karen)
 
 Order.all.each do |order|
     order.subtotal = ((order.line_items.map {|li| li.dish.price}).reduce {|price, n| n + price}).round(2)
-    order.tax = (order.subtotal * 1.08) - order.subtotal
-    order.total = order.subtotal + order.tax
+    order.save
+    order.tax = ((order.subtotal * 1.08) - order.subtotal).round(2)
+    order.save
+    order.total = (order.subtotal + order.tax).round(2)
+    order.save
 end
-
-# (o.line_items.map {|li| li.dish.price}).reduce {|price, n| n + price}
-# (Order.all.map {|order| order.line_items.map {|li| li.dish.price}}).reduce {|price, n| n + price}
