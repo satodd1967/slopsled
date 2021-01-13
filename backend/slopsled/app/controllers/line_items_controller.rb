@@ -3,14 +3,16 @@ class LineItemsController < ApplicationController
 
   # GET /line_items
   def index
-    @line_items = LineItem.all
-
-    render json: @line_items
+    # @line_items = LineItem.all
+    # render json: @line_items
+    line_items = LineItem.all
+    render json: LineItemSerializer.new(line_items)
   end
 
   # GET /line_items/1
   def show
-    render json: @line_item
+    # render json: @line_item
+    render json: LineItemSerializer.new(@line_item)
   end
 
   # POST /line_items
