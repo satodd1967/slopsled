@@ -11,7 +11,8 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants/1
   def show
-    render json: @restaurant
+    # render json: @restaurant
+    render json: RestaurantSerializer.new(@restaurant)
   end
 
   # POST /restaurants
