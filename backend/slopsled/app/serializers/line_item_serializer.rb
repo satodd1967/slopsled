@@ -1,4 +1,4 @@
 class LineItemSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :id, :order_id, :dish_id
 end

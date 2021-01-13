@@ -3,9 +3,10 @@ class RestaurantsController < ApplicationController
 
   # GET /restaurants
   def index
-    @restaurants = Restaurant.all
-
-    render json: @restaurants
+    # @restaurants = Restaurant.all
+    # render json: @restaurants
+    restaurants = Restaurant.all.first
+    render json: RestaurantSerializer.new(restaurants)
   end
 
   # GET /restaurants/1
