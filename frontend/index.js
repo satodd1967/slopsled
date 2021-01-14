@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    renderStartOrder()
+    startOrder()
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
 
-function renderStartOrder(){
+function startOrder(){
     let startOrderDiv = document.getElementById("start-order")
 
     startOrderDiv.innerHTML +=
