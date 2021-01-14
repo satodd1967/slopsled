@@ -16,6 +16,7 @@ function startOrder(){
 function openMenu() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
+    // This needs to set a variable equal to an instance of the order class and then show the order on the screen
     fetchCategories();
 }
 
