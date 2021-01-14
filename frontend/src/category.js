@@ -14,7 +14,6 @@ class Category{
         <h3>Name: ${this.name}</h3>
         <li>description: ${this.description}</li>
         </ul>
-        <button class="delete-bttn" data-id=${this.id} onclick="deleteUser()">Delete User</button>
         `
     }
 }

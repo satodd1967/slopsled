@@ -1,9 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // createUserForm();
-    fetchCategories();
+    renderStartOrder()
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
+
+function renderStartOrder(){
+    let startOrderDiv = document.getElementById("start-order")
+
+    startOrderDiv.innerHTML +=
+    `
+    <button class="start-btn" onclick="openMenu()">Start Order</button>
+    `
+}
+
+function openMenu() {
+    let startButtonDiv = document.getElementById("start-order");
+    startButtonDiv.innerHTML = "";
+    fetchCategories();
+}
 
 function fetchCategories(){
     fetch(`${BASE_URL}/categories`)
