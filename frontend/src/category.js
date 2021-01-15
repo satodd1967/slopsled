@@ -14,7 +14,7 @@ class Category{
         <h3>Name: ${this.name}</h3>
         <li>description: ${this.description}</li>
         </ul>
-        <button class="choose-category-btn" onclick="openRestaurants()">Choose</button>
+        <button class="choose-category-btn" dataId="${this.id} onclick="openRestaurants()">Choose</button>
         `
     }
 }
