@@ -16,7 +16,8 @@ function startOrder(){
 function openMenu() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
-    // This needs to set a variable equal to an instance of the order class and then show the order on the screen
+    let o = new Order(0, 0, 0)
+    o.renderNewOrder()
     fetchCategories();
 }
 
@@ -28,6 +29,23 @@ function fetchCategories(){
         for (let cat of cats){
             let c = new Category(cat.id, cat.name, cat.description)
             c.renderCategory();
+        }
+    })
+}
+
+function fetchRestaurantsByCat(category){
+    fetch(`${BASE_URL}/restaurants`)
+    .then(resp => resp.json())
+    .then(restaurants => {
+        console.log(restaurants.data.map( data => data.attributes.category_id))
+        let filter = restaurants.data.filter( find_rest => {
+            return (find_rest.attributes.category_id === category)
+        })
+        console.log(filter)
+        let rests = filter.map( data => data.attributes)
+        for (let rest of rests){
+            let r = new Restaurant(rest.id, rest.name, rest.description)
+            r.renderRestaurant();
         }
     })
 }
