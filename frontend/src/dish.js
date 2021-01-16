@@ -19,7 +19,7 @@ class Dish{
         <li>price: ${this.price}</li>
         <li>Restaurant: ${this.restaurant_id}</li>
         </ul>
-        <button class="choose-dish-btn" onclick="openRestaurantMenu()">Choose</button>
+        <button class="add-dish-btn" onclick="openRestaurantMenu()">Add</button>
         `
     }
 
