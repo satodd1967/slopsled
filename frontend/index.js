@@ -82,6 +82,33 @@ function fetchDishesByRestaurant(restaurant){
     })
 }
 
+function createCustomer(){
+
+    let customer = {
+        username: "",
+        email: ""
+    }
+
+    fetch(`${BASE_URL}/orders`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            customer: {
+                username: customer.username,
+                email: customer.email
+            }
+        })
+    })
+    .then(resp => resp.json())
+    .then(order => {
+        let c = new Customer(customer.username, customer.email)
+        c.renderCustomer();
+    })
+}
+
 function createOrder(){
 
     let order = {
