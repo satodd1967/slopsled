@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    startOrder()
+    start()
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
 
-function startOrder(){
+function start(){
     let startOrderDiv = document.getElementById("start-order")
 
     startOrderDiv.innerHTML +=
@@ -88,7 +88,7 @@ function createOrder(){
         subtotal: 0,
         tax: 0,
         total: 0,
-        customer_id: null
+        customer_id: 1
     }
 
     fetch(`${BASE_URL}/orders`, {
