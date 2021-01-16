@@ -82,6 +82,37 @@ function fetchDishesByRestaurant(restaurant){
     })
 }
 
+function createOrder(){
+
+    let order = {
+        subtotal: 0,
+        tax: 0,
+        total: 0,
+        customer_id: null
+    }
+
+    fetch(`${BASE_URL}/orders`, {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            order: {
+                subtotal: order.subtotal,
+                tax: order.tax,
+                total: order.total,
+                customer_id: order.customer_id
+            }
+        })
+    })
+    .then(resp => resp.json())
+    .then(order => {
+        let o = new Order(order.subtotal, order.tax, order.total, order.customer_id)
+        o.renderNewOrder();
+    })
+}
+
 
 // function createUserForm(){
 //     let usersForm = document.getElementById("users-form")
