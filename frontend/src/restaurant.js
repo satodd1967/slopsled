@@ -14,7 +14,7 @@ class Restaurant{
         <h3>Name: ${this.name}</h3>
         <li>description: ${this.description}</li>
         </ul>
-        <button class="choose-restaurant-btn" onclick="openRestaurantMenu()">Choose</button>
+        <button class="choose-restaurant-btn" data-id=${this.id} onclick="getDishes()">Choose</button>
         `
     }
 

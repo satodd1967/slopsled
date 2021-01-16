@@ -9,16 +9,30 @@ function startOrder(){
 
     startOrderDiv.innerHTML +=
     `
-    <button class="start-btn" onclick="openMenu()">Start Order</button>
+    <button class="start-btn" onclick="getCategories()">Start Order</button>
     `
 }
 
-function openMenu() {
+function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
     let o = new Order(0, 0, 0)
     o.renderNewOrder()
     fetchCategories();
+}
+
+function getRestaurants() {
+    let categoriesDiv = document.getElementById("categories-container");
+    categoriesDiv.innerHTML = "";
+    let catId = parseInt(event.target.dataset.id);
+    fetchRestaurantsByCat(catId) 
+}
+
+function getDishes() {
+    let dishesDiv = document.getElementById("restaurants-container");
+    dishesDiv.innerHTML = "";
+    let restId = parseInt(event.target.dataset.id);
+    fetchDishesByRestaurant(restId) 
 }
 
 function fetchCategories(){
@@ -37,11 +51,11 @@ function fetchRestaurantsByCat(category){
     fetch(`${BASE_URL}/restaurants`)
     .then(resp => resp.json())
     .then(restaurants => {
-        console.log(restaurants.data.map( data => data.attributes.category_id))
+        // console.log(restaurants.data.map( data => data.attributes.category_id))
         let filter = restaurants.data.filter( find_rest => {
             return (find_rest.attributes.category_id === category)
         })
-        console.log(filter)
+        // console.log(filter)
         let rests = filter.map( data => data.attributes)
         for (let rest of rests){
             let r = new Restaurant(rest.id, rest.name, rest.description)
@@ -49,6 +63,25 @@ function fetchRestaurantsByCat(category){
         }
     })
 }
+
+function fetchDishesByRestaurant(restaurant){
+    fetch(`${BASE_URL}/dishes`)
+    .then(resp => resp.json())
+    .then(dishes => {
+        // console.log(dishes.data)
+        // console.log(dishes.data.map( data => data.attributes.restaurant_id))
+        let filter = dishes.data.filter( find_dishes => {
+            return (find_dishes.attributes.restaurant_id === restaurant)
+        })
+        // console.log(filter)
+        let plates = filter.map( data => data.attributes)
+        for (let plate of plates){
+            let r = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
+            r.renderDish();
+        }
+    })
+}
+
 
 // function createUserForm(){
 //     let usersForm = document.getElementById("users-form")
