@@ -90,6 +90,21 @@ function fetchDishesForObject(id, object){
     }
 }
 
+function fetchLineItemsForOrder(id) {
+    let lineItems = api.get("line_items")
+    .then(lineItems => {
+        let filter = lineItems.data.filter( find_items => {
+            return (find_items.attributes.order_id === id)
+        })
+        let items = filter.map( data => data.attributes)
+        console.log(items)
+        // for (let item of items){
+        //     let i = new LineItem(rest.id, rest.name, rest.description)
+        //     r.renderRestaurant();
+        // }
+    })
+}
+
 function createCustomer(){
     let jsCustomer = {
         username: "",
