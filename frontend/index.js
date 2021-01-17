@@ -1,9 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     start()
-    createCustomer()
+    // createCustomer()
+    api = new ApiCall
 })
 
-const BASE_URL = "http://127.0.0.1:3000"
+// const BASE_URL = "http://127.0.0.1:3000"
 
 function start(){
     let startOrderDiv = document.getElementById("start-order")
@@ -17,7 +18,7 @@ function start(){
 function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
-    createOrder();
+    // createOrder();
     fetchCategories();
 }
 
@@ -36,8 +37,9 @@ function getDishes() {
 }
 
 function fetchCategories(){
-    fetch(`${BASE_URL}/categories`)
-    .then(resp => resp.json())
+    // fetch(`${BASE_URL}/categories`)
+    // .then(resp => resp.json())
+    let categories = api.get("/categories")
     .then(categories => {
         let cats = categories.data.map( data => data.attributes)
         for (let cat of cats){
