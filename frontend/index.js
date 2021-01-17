@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     start()
-    // createCustomer()
     api = new ApiCall
+    createCustomer()
 })
 
 // const BASE_URL = "http://127.0.0.1:3000"
@@ -18,7 +18,7 @@ function start(){
 function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
-    // createOrder();
+    createOrder();
     fetchCategories();
 }
 
@@ -54,11 +54,9 @@ function fetchRestaurantsByCat(category){
     // .then(resp => resp.json())
     let restaurants = api.get("restaurants")
     .then(restaurants => {
-        // console.log(restaurants.data.map( data => data.attributes.category_id))
         let filter = restaurants.data.filter( find_rest => {
             return (find_rest.attributes.category_id === category)
         })
-        // console.log(filter)
         let rests = filter.map( data => data.attributes)
         for (let rest of rests){
             let r = new Restaurant(rest.id, rest.name, rest.description)
@@ -68,15 +66,13 @@ function fetchRestaurantsByCat(category){
 }
 
 function fetchDishesByRestaurant(restaurant){
-    fetch(`${BASE_URL}/dishes`)
-    .then(resp => resp.json())
+    // fetch(`${BASE_URL}/dishes`)
+    // .then(resp => resp.json())
+    let dishes = api.get("dishes")
     .then(dishes => {
-        // console.log(dishes.data)
-        // console.log(dishes.data.map( data => data.attributes.restaurant_id))
         let filter = dishes.data.filter( find_dishes => {
             return (find_dishes.attributes.restaurant_id === restaurant)
         })
-        // console.log(filter)
         let plates = filter.map( data => data.attributes)
         for (let plate of plates){
             let r = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
@@ -87,25 +83,26 @@ function fetchDishesByRestaurant(restaurant){
 
 function createCustomer(){
 
-    let customer = {
+    let jsCustomer = {
         username: "",
         email: ""
     }
 
-    fetch(`${BASE_URL}/customers`, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            customer: {
-                username: customer.username,
-                email: customer.email
-            }
-        })
-    })
-    .then(resp => resp.json())
+    // fetch(`${BASE_URL}/customers`, {
+    //     method: "POST",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         customer: {
+    //             username: customer.username,
+    //             email: customer.email
+    //         }
+    //     })
+    // })
+    // .then(resp => resp.json())
+    let customer = api.post("customers", jsCustomer)
     .then(customer => {
       let c = new Customer(customer.id, customer.username, customer.email)
     })
@@ -115,29 +112,30 @@ function createOrder(){
 
     console.log(currentCustomer[0].id)
 
-    let order = {
+    let jsOrder = {
         subtotal: 0,
         tax: 0,
         total: 0,
         customer_id: currentCustomer[0].id
     }
 
-    fetch(`${BASE_URL}/orders`, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            order: {
-                subtotal: order.subtotal,
-                tax: order.tax,
-                total: order.total,
-                customer_id: order.customer_id
-            }
-        })
-    })
-    .then(resp => resp.json())
+    // fetch(`${BASE_URL}/orders`, {
+    //     method: "POST",
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         order: {
+    //             subtotal: order.subtotal,
+    //             tax: order.tax,
+    //             total: order.total,
+    //             customer_id: order.customer_id
+    //         }
+    //     })
+    // })
+    // .then(resp => resp.json())
+    let order = api.post("orders", jsOrder)
     .then(order => {
         let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
         o.renderNewOrder();
