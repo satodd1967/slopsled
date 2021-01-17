@@ -1,14 +1,11 @@
 class LineItem{
-    constructor(id, name, description, price, image, restaurant_id) {
+    constructor(id, order_id, dish_id) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.image = image;
-        this.restaurant_id = restaurant_id;
+        this.order_id = order_id;
+        this.dish_id = dish_id;
     }
 
-    renderDish() {
+    renderLineItem() {
         let dishesDiv = document.getElementById("dishes-container")
 
         dishesDiv.innerHTML +=

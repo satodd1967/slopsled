@@ -31,7 +31,12 @@ function getDishes() {
     let dishesDiv = document.getElementById("restaurants-container");
     dishesDiv.innerHTML = "";
     let restId = parseInt(event.target.dataset.id);
-    fetchDishesByRestaurant(restId) 
+    fetchDishesForObject(restId, "restaurant") 
+}
+
+function addLineItem() {
+    let dishId = parseInt(event.target.dataset.id);
+    fetchDishesForObject(dishId, "lineItem")
 }
 
 function fetchCategories(){
@@ -59,11 +64,12 @@ function fetchRestaurantsByCat(category){
     })
 }
 
-function fetchDishesByRestaurant(restaurant){
+function fetchDishesForObject(id, object){
+    if (object === "restaurant") {
     let dishes = api.get("dishes")
     .then(dishes => {
         let filter = dishes.data.filter( find_dishes => {
-            return (find_dishes.attributes.restaurant_id === restaurant)
+            return (find_dishes.attributes.restaurant_id === id)
         })
         let plates = filter.map( data => data.attributes)
         for (let plate of plates){
@@ -71,6 +77,17 @@ function fetchDishesByRestaurant(restaurant){
             r.renderDish();
         }
     })
+    } else {
+        let dishes = api.get(`dishes/${id}`)
+        .then(dish => {
+        let dishAdd = dish.data.attributes
+        let jsLineItem = {
+            order_id: currentOrder[0].id,
+            dish_id: dishAdd.id
+        }
+        createLineItem(jsLineItem)
+        })
+    }
 }
 
 function createCustomer(){
@@ -98,6 +115,20 @@ function createOrder(){
         let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
         o.renderNewOrder();
     })
+}
+
+function createLineItem(object) {
+    let lineItem = api.post("line_items", object)
+    .then(lineItem => {
+        let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
+        l.renderLineItem()
+        console.log(l)
+    })
+}
+
+function fetchDishesOrderView() {
+    // This should use the current order_id and pull all dish_id's
+    // and then render with prices and then it should also update the order and re-render the order
 }
 
 
