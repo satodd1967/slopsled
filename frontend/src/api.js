@@ -4,7 +4,7 @@ class ApiCall {
     }
 
     get(url) {
-        return fetch(this.baseUrl + url)
+        return fetch(`${this.baseUrl}/${url}`)
             .then(r => r.json())
     }
 }

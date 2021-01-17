@@ -39,7 +39,7 @@ function getDishes() {
 function fetchCategories(){
     // fetch(`${BASE_URL}/categories`)
     // .then(resp => resp.json())
-    let categories = api.get("/categories")
+    let categories = api.get("categories")
     .then(categories => {
         let cats = categories.data.map( data => data.attributes)
         for (let cat of cats){
@@ -50,8 +50,9 @@ function fetchCategories(){
 }
 
 function fetchRestaurantsByCat(category){
-    fetch(`${BASE_URL}/restaurants`)
-    .then(resp => resp.json())
+    // fetch(`${BASE_URL}/restaurants`)
+    // .then(resp => resp.json())
+    let restaurants = api.get("restaurants")
     .then(restaurants => {
         // console.log(restaurants.data.map( data => data.attributes.category_id))
         let filter = restaurants.data.filter( find_rest => {
