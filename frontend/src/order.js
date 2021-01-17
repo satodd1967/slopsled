@@ -1,3 +1,5 @@
+let currentOrder = []
+
 class Order{
     constructor(id, subtotal, tax, total, customer_id) {
         this.id = id;
@@ -5,6 +7,7 @@ class Order{
         this.tax = tax;
         this.total = total;
         this.customer_id = customer_id;
+        this.save()
     }
 
     renderNewOrder(){
@@ -20,6 +23,10 @@ class Order{
         <li>Customer Id: ${this.customer_id}</li>
         </ul>
         ` 
+    }
+
+    save() {
+        currentOrder.push(this) 
     }
 }
 

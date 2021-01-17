@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     createCustomer()
 })
 
-// const BASE_URL = "http://127.0.0.1:3000"
-
 function start(){
     let startOrderDiv = document.getElementById("start-order")
 
@@ -37,8 +35,6 @@ function getDishes() {
 }
 
 function fetchCategories(){
-    // fetch(`${BASE_URL}/categories`)
-    // .then(resp => resp.json())
     let categories = api.get("categories")
     .then(categories => {
         let cats = categories.data.map( data => data.attributes)
@@ -50,8 +46,6 @@ function fetchCategories(){
 }
 
 function fetchRestaurantsByCat(category){
-    // fetch(`${BASE_URL}/restaurants`)
-    // .then(resp => resp.json())
     let restaurants = api.get("restaurants")
     .then(restaurants => {
         let filter = restaurants.data.filter( find_rest => {
@@ -66,8 +60,6 @@ function fetchRestaurantsByCat(category){
 }
 
 function fetchDishesByRestaurant(restaurant){
-    // fetch(`${BASE_URL}/dishes`)
-    // .then(resp => resp.json())
     let dishes = api.get("dishes")
     .then(dishes => {
         let filter = dishes.data.filter( find_dishes => {
@@ -82,26 +74,11 @@ function fetchDishesByRestaurant(restaurant){
 }
 
 function createCustomer(){
-
     let jsCustomer = {
         username: "",
         email: ""
     }
 
-    // fetch(`${BASE_URL}/customers`, {
-    //     method: "POST",
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         customer: {
-    //             username: customer.username,
-    //             email: customer.email
-    //         }
-    //     })
-    // })
-    // .then(resp => resp.json())
     let customer = api.post("customers", jsCustomer)
     .then(customer => {
       let c = new Customer(customer.id, customer.username, customer.email)
@@ -109,9 +86,6 @@ function createCustomer(){
 }
 
 function createOrder(){
-
-    console.log(currentCustomer[0].id)
-
     let jsOrder = {
         subtotal: 0,
         tax: 0,
@@ -119,22 +93,6 @@ function createOrder(){
         customer_id: currentCustomer[0].id
     }
 
-    // fetch(`${BASE_URL}/orders`, {
-    //     method: "POST",
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         order: {
-    //             subtotal: order.subtotal,
-    //             tax: order.tax,
-    //             total: order.total,
-    //             customer_id: order.customer_id
-    //         }
-    //     })
-    // })
-    // .then(resp => resp.json())
     let order = api.post("orders", jsOrder)
     .then(order => {
         let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
