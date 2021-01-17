@@ -10,7 +10,6 @@ class Dish{
 
     renderDish() {
         let dishesDiv = document.getElementById("dishes-container")
-
         dishesDiv.innerHTML +=
         `
         <ul>
@@ -26,11 +25,11 @@ class Dish{
     renderDishLineItem() {
         let dishItemDiv = document.getElementById("line-item-container")
 
-        dishItemDiv +=
+        dishItemDiv.innerHTML +=
         `
         <ul>
         <li>${this.name} Price: ${this.price}</li>
-        <button class="dish-delete-btn" data-id=${this.id} onclick="addLineItem()">Delete</button>
+        <button class="dish-delete-btn" data-id=${this.id} onclick="deletLineItem()">Delete</button>
         `
     }
 

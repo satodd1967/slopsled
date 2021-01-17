@@ -94,17 +94,17 @@ function fetchDishesForObject(id, object){
 }
 
 function fetchOrderDishes(id) {
+    let orderDishesDiv = document.getElementById("line-item-container")
+    orderDishesDiv.innerHTML = ""
     let Orders = api.get("orders")
     .then(orders => {
         let filter = orders.data.filter( find_items => {
             return (find_items.attributes.id === id)
         })
-        let plates = filter.map( data => data.attributes.dishes[0])
-        console.log(plates)
+        let plates = (filter.map( data => data.attributes.dishes))[0]
         for (let plate of plates){
             let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
             p.renderDishLineItem();
-            console.log(p)
         }
     })
 }
