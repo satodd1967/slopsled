@@ -99,12 +99,12 @@ function fetchOrderDishes(id) {
         let filter = orders.data.filter( find_items => {
             return (find_items.attributes.id === id)
         })
-        let plates = filter.map( data => data.attributes.dishes)
+        let plates = filter.map( data => data.attributes.dishes[0])
         console.log(plates)
         for (let plate of plates){
             let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
-            console.log(p)
             p.renderDishLineItem();
+            console.log(p)
         }
     })
 }
