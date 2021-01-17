@@ -1,6 +1,7 @@
 class Order < ApplicationRecord
   belongs_to :customer
   has_many :line_items
+  has_many :dishes, through: :line_items
 end
 
 def calc_subtotal
