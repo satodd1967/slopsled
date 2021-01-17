@@ -7,15 +7,13 @@ class LineItem{
 
     renderLineItem() {
         let dishesDiv = document.getElementById("dishes-container")
-
+        console.log(this)
         dishesDiv.innerHTML +=
         `
         <ul>
         <h3>Line Items</h3>
-        <li>Name: ${this.name}</li>
-        <li>description: ${this.description}</li>
-        <li>price: ${this.price}</li>
-        <li>Restaurant: ${this.restaurant_id}</li>
+        <li>Order Id: ${this.order_id}</li>
+        <li>Dish Id: ${this.dish_id}</li>
         </ul>
         <button class="choose-dish-btn" onclick="openRestaurantMenu()">Choose</button>
         `
