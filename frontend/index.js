@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     start()
+    createCustomer()
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
@@ -16,8 +17,7 @@ function start(){
 function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
-    let o = new Order(0, 0, 0)
-    o.renderNewOrder()
+    createOrder();
     fetchCategories();
 }
 
@@ -89,7 +89,7 @@ function createCustomer(){
         email: ""
     }
 
-    fetch(`${BASE_URL}/orders`, {
+    fetch(`${BASE_URL}/customers`, {
         method: "POST",
         headers: {
             'Accept': 'application/json',
@@ -103,19 +103,20 @@ function createCustomer(){
         })
     })
     .then(resp => resp.json())
-    .then(order => {
-        let c = new Customer(customer.username, customer.email)
-        c.renderCustomer();
+    .then(customer => {
+      let c = new Customer(customer.id, customer.username, customer.email)
     })
 }
 
 function createOrder(){
 
+    console.log(currentCustomer[0].id)
+
     let order = {
         subtotal: 0,
         tax: 0,
         total: 0,
-        customer_id: 1
+        customer_id: currentCustomer[0].id
     }
 
     fetch(`${BASE_URL}/orders`, {
@@ -135,7 +136,7 @@ function createOrder(){
     })
     .then(resp => resp.json())
     .then(order => {
-        let o = new Order(order.subtotal, order.tax, order.total, order.customer_id)
+        let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
         o.renderNewOrder();
     })
 }
