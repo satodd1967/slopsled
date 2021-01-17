@@ -11,7 +11,8 @@ class LineItem{
         dishesDiv.innerHTML +=
         `
         <ul>
-        <h3>Name: ${this.name}</h3>
+        <h3>Line Items</h3>
+        <li>Name: ${this.name}</li>
         <li>description: ${this.description}</li>
         <li>price: ${this.price}</li>
         <li>Restaurant: ${this.restaurant_id}</li>
