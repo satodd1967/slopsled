@@ -16,6 +16,8 @@ function start(){
 function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
+    let orderHeaderDiv = document.getElementById("line-items-header")
+    orderHeaderDiv.innerHTML = "<h3>Current Order</h3>"
     createOrder();
     fetchCategories();
 }
@@ -37,6 +39,7 @@ function getDishes() {
 function addLineItem() {
     let dishId = parseInt(event.target.dataset.id);
     fetchDishesForObject(dishId, "lineItem")
+    fetchOrderDishes(currentOrder[0].id)
 }
 
 function fetchCategories(){
@@ -73,8 +76,8 @@ function fetchDishesForObject(id, object){
         })
         let plates = filter.map( data => data.attributes)
         for (let plate of plates){
-            let r = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
-            r.renderDish();
+            let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
+            p.renderDish();
         }
     })
     } else {
@@ -90,18 +93,19 @@ function fetchDishesForObject(id, object){
     }
 }
 
-function fetchLineItemsForOrder(id) {
-    let lineItems = api.get("line_items")
-    .then(lineItems => {
-        let filter = lineItems.data.filter( find_items => {
-            return (find_items.attributes.order_id === id)
+function fetchOrderDishes(id) {
+    let Orders = api.get("orders")
+    .then(orders => {
+        let filter = orders.data.filter( find_items => {
+            return (find_items.attributes.id === id)
         })
-        let items = filter.map( data => data.attributes)
-        console.log(items)
-        // for (let item of items){
-        //     let i = new LineItem(rest.id, rest.name, rest.description)
-        //     r.renderRestaurant();
-        // }
+        let plates = filter.map( data => data.attributes.dishes)
+        console.log(plates)
+        for (let plate of plates){
+            let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
+            console.log(p)
+            p.renderDishLineItem();
+        }
     })
 }
 
@@ -135,9 +139,9 @@ function createOrder(){
 function createLineItem(object) {
     let lineItem = api.post("line_items", object)
     .then(lineItem => {
-        let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
-        l.renderLineItem()
-        console.log(l)
+        // let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
+        // l.renderLineItem()
+        // console.log(l)
     })
 }
 

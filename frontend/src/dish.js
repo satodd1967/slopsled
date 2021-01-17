@@ -23,4 +23,15 @@ class Dish{
         `
     }
 
+    renderDishLineItem() {
+        let dishItemDiv = document.getElementById("line-item-container")
+
+        dishItemDiv +=
+        `
+        <ul>
+        <li>${this.name} Price: ${this.price}</li>
+        <button class="dish-delete-btn" data-id=${this.id} onclick="addLineItem()">Delete</button>
+        `
+    }
+
 }
