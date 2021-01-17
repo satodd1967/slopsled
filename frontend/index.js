@@ -39,15 +39,6 @@ function addLineItem() {
     fetchDishesForObject(dishId, "lineItem")
 }
 
-function createLineItem(object) {
-    let lineItem = api.post("line_items", object)
-    .then(lineItem => {
-        let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
-        l.renderLineItem()
-        console.log(l)
-    })
-}
-
 function fetchCategories(){
     let categories = api.get("categories")
     .then(categories => {
@@ -123,6 +114,15 @@ function createOrder(){
     .then(order => {
         let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
         o.renderNewOrder();
+    })
+}
+
+function createLineItem(object) {
+    let lineItem = api.post("line_items", object)
+    .then(lineItem => {
+        let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
+        l.renderLineItem()
+        console.log(l)
     })
 }
 
