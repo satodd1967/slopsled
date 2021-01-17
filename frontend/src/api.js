@@ -19,4 +19,16 @@ class ApiCall {
         })
         .then(resp => resp.json()) 
     }
+
+    update(url, object) {
+        return fetch(`${this.baseUrl}/${url}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(object)
+        })
+        .then(resp => resp.json())
+    }
+    
 }

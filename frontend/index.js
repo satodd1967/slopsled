@@ -98,14 +98,29 @@ function fetchOrderDishes(id) {
     orderDishesDiv.innerHTML = ""
     let Orders = api.get("orders")
     .then(orders => {
-        let filter = orders.data.filter( find_items => {
-            return (find_items.attributes.id === id)
+        let filter = orders.data.filter( find_item => {
+            return (find_item.attributes.id === id)
         })
         let plates = (filter.map( data => data.attributes.dishes))[0]
+        console.log(plates)
         for (let plate of plates){
             let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
             p.renderDishLineItem();
         }
+    })
+}
+
+function fetchOrderForCalc(id) {
+    let Orders = api.get("orders")
+    .then(orders => {
+        let filter = orders.data.filter( find_item => {
+            return (find_item.attributes.id === id)
+        })
+    let plates = (filter.map( data => data.attributes.dishes))[0]
+    let subTotal = plates.reduce ( (total, dish) => dish.price + total, 0)
+    let tax = ((subTotal * 1.08) - subTotal).toFixed(2)
+    let total = ((parseFloat(subTotal) + parseFloat(tax))).toFixed(2)
+    
     })
 }
 
