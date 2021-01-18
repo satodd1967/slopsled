@@ -40,6 +40,7 @@ function addLineItem() {
     let dishId = parseInt(event.target.dataset.id);
     fetchDishesForObject(dishId, "lineItem")
     fetchOrderDishes(currentOrder[0].id)
+    fetchOrderForCalc(currentOrder[0].id)
 }
 
 function fetchCategories(){
@@ -117,10 +118,29 @@ function fetchOrderForCalc(id) {
             return (find_item.attributes.id === id)
         })
     let plates = (filter.map( data => data.attributes.dishes))[0]
-    let subTotal = plates.reduce ( (total, dish) => dish.price + total, 0)
-    let tax = ((subTotal * 1.08) - subTotal).toFixed(2)
-    let total = ((parseFloat(subTotal) + parseFloat(tax))).toFixed(2)
+    let orderSubTotal = plates.reduce ( (total, dish) => dish.price + total, 0)
+    console.log(orderSubTotal)
+    let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
+    console.log(orderTax)
+    let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
+    console.log(orderTotal)
+    let orderUpdate = {
+        subtotal: orderSubTotal,
+        tax: orderTax,
+        total: orderTotal,
+    }
+    console.log(orderUpdate)
+    updateOrder(id, orderUpdate)
+    })
+}
 
+function updateOrder(id, object) {
+    let updateOrderDiv = document.getElementById("new-order-div")
+    updateOrderDiv.innerHTML = ""
+    let order = api.update(`orders/${id}`, object)
+    .then(orders => {
+        let o = new Order(orders.id, orders.subtotal, orders.tax, orders.total, orders.customer_id)
+        o.renderNewOrder()
     })
 }
 
