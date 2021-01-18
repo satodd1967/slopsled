@@ -30,5 +30,11 @@ class ApiCall {
         })
         .then(resp => resp.json())
     }
-    
+
+    delete(url) {
+        fetch(`${this.baseUrl}/${url}`, {
+        method: 'DELETE'
+        })
+    }
+
 }

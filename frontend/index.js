@@ -43,10 +43,6 @@ function addLineItem() {
     fetchOrderForCalc(currentOrder[0].id)
 }
 
-function deleteLineItem() {
-    let dishId = parseInt(event.target.dataset.id);
-}
-
 function fetchCategories(){
     let categories = api.get("categories")
     .then(categories => {
@@ -103,9 +99,11 @@ function fetchOrderDishes(id) {
     orderDishesDiv.innerHTML = ""
     let Orders = api.get("orders")
     .then(orders => {
+        console.log("orders", orders)
         let filter = orders.data.filter( find_item => {
             return (find_item.attributes.id === id)
         })
+        console.log("filter", filter)
         let plates = (filter.map( data => data.attributes.dishes))[0]
         for (let plate of plates){
             let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
@@ -144,7 +142,10 @@ function updateOrder(id, object) {
 }
 
 function getLineItemForDelete(id) {
-
+    let lineItemId = parseInt(event.target.dataset.id);
+    let lineItem = api.delete(`line_items/${lineItemId}`)
+    fetchOrderForCalc(currentOrder[0].id)
+    fetchOrderDishes(currentOrder[0].id)
 }
 
 function createCustomer(){

@@ -29,7 +29,7 @@ class Dish{
         `
         <ul>
         <li>${this.name} Price: ${this.price}</li>
-        <button class="dish-delete-btn" data-id=${this.id} onclick="deletLineItem()">Delete</button>
+        <button class="dish-delete-btn" data-id=${this.id} onclick="getLineItemForDelete()">Delete</button>
         `
     }
 
