@@ -94,20 +94,46 @@ function fetchDishesForObject(id, object){
     }
 }
 
+// function fetchOrderDishes(id) {
+//     let orderDishesDiv = document.getElementById("line-item-container")
+//     orderDishesDiv.innerHTML = ""
+//     let Orders = api.get("orders")
+//     .then(orders => {
+//         console.log("orders", orders)
+//         let filter = orders.data.filter( find_item => {
+//             return (find_item.attributes.id === id)
+//         })
+//         console.log("filter", filter)
+//         let plates = (filter.map( data => data.attributes.dishes))[0]
+//         for (let plate of plates){
+//             let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
+//             p.renderDishLineItem();
+//         }
+//     })
+// }
+
 function fetchOrderDishes(id) {
     let orderDishesDiv = document.getElementById("line-item-container")
     orderDishesDiv.innerHTML = ""
     let Orders = api.get("orders")
     .then(orders => {
-        console.log("orders", orders)
         let filter = orders.data.filter( find_item => {
             return (find_item.attributes.id === id)
         })
-        console.log("filter", filter)
-        let plates = (filter.map( data => data.attributes.dishes))[0]
-        for (let plate of plates){
-            let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
-            p.renderDishLineItem();
+        let lines = (filter.map( data => data.attributes.line_items))[0]
+        for (let line of lines){
+            let dish = api.get(`dishes/${line.dish_id}`)
+            .then(dishes => {
+                let hash = {
+                    id: line.id,
+                    order_id: line.order_id,
+                    dish_id: line.dish_id,
+                    dish_name: dishes.data.attributes.name,
+                    dish_price: dishes.data.attributes.price
+                }
+                let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
+                l.renderDishLineItem()
+            })
         }
     })
 }
