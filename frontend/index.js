@@ -120,7 +120,7 @@ function fetchOrderForCalc(id) {
     let subTotal = plates.reduce ( (total, dish) => dish.price + total, 0)
     let tax = ((subTotal * 1.08) - subTotal).toFixed(2)
     let total = ((parseFloat(subTotal) + parseFloat(tax))).toFixed(2)
-    
+
     })
 }
 
@@ -154,16 +154,9 @@ function createOrder(){
 function createLineItem(object) {
     let lineItem = api.post("line_items", object)
     .then(lineItem => {
-        // let l = new LineItem(lineItem.id, lineItem.order_id, lineItem.dish_id)
-        // l.renderLineItem()
-        // console.log(l)
     })
 }
 
-function fetchDishesOrderView() {
-    // This should use the current order_id and pull all dish_id's
-    // and then render with prices and then it should also update the order and re-render the order
-}
 
 
 // function createUserForm(){
