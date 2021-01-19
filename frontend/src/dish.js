@@ -13,23 +13,12 @@ class Dish{
         dishesDiv.innerHTML +=
         `
         <ul>
-        <h3>Name: ${this.name}</h3>
+        <h4>Name: ${this.name}</h4>
         <li>description: ${this.description}</li>
         <li>price: ${this.price}</li>
         <li>Restaurant: ${this.restaurant_id}</li>
         </ul>
         <button class="add-dish-btn" data-id=${this.id} onclick="addLineItem()">Add</button>
-        `
-    }
-
-    renderDishLineItem() {
-        let dishItemDiv = document.getElementById("line-item-container")
-
-        dishItemDiv.innerHTML +=
-        `
-        <ul>
-        <li>${this.name} Price: ${this.price}</li>
-        <button class="dish-delete-btn" data-id=${this.id} onclick="getLineItemForDelete()">Delete</button>
         `
     }
 

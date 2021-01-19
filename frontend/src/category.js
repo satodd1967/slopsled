@@ -11,7 +11,7 @@ class Category{
         categoriesDiv.innerHTML +=
         `
         <ul>
-        <h3>Name: ${this.name}</h3>
+        <h4>Name: ${this.name}</h4>
         <li>description: ${this.description}</li>
         </ul>
         <button class="choose-category-btn" data-id=${this.id} onclick="getRestaurants()">Choose</button>
