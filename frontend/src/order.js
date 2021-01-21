@@ -16,11 +16,9 @@ class Order{
         newOrderDiv.innerHTML +=
         `
         <ul>
-        <li>id: ${this.id}</li>
         <li>Subtotal: ${this.subtotal}</li>
         <li>Tax: ${this.tax}</li>
         <li>Total: ${this.total}</li>
-        <li>Customer Id: ${this.customer_id}</li>
         </ul>
         ` 
     }
