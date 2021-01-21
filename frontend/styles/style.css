@@ -29,7 +29,6 @@
     padding: 10px;
     height: 100%;
     width: 15%;
-    /* text-align: center; */
     background-color: #bbb;
 }
 
@@ -38,8 +37,15 @@
     padding: 10px;
     height: 100%;
     width: 40%;
-    /* text-align: center; */
     background-color: #bbb;
+}
+
+#order {
+    text-align: center;
+}
+
+#line-items-header {
+    text-align: center;
 }
 
 

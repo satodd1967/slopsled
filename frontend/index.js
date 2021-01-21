@@ -169,6 +169,8 @@ function createCustomer(){
 }
 
 function createOrder(){
+    let orderDiv = document.getElementById("order")
+    orderDiv.innerHTML = "<h4>Your Order</h4>"
     let jsOrder = {
         subtotal: 0,
         tax: 0,
