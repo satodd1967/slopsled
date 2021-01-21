@@ -12,9 +12,10 @@ class LineItemRender{
 
         dishItemDiv.innerHTML +=
         `
-        <ul>
+        <ul id=${this.id}>
         <li>${this.dish_name} Price: ${this.dish_price}</li>
         <button class="dish-delete-btn" data-id=${this.id} onclick="getLineItemForDelete()">Delete</button>
+        </ul>
         `
     }
 
