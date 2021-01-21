@@ -95,28 +95,24 @@ function fetchDishesForObject(id, object){
 }
 
 function fetchOrderDishes(id, lineItemId) {
-    let Orders = api.get("orders")
+    let Orders = api.get(`orders/${id}`)
     .then(orders => {
-        let filter = orders.data.filter( find_item => {
-            return (find_item.attributes.id === id)
+        let dish = orders.data.attributes.dishes.find( find_dish => {
+            return find_dish.id === (orders.data.attributes.line_items.find( find_li => {
+                return find_li.id === lineItemId
+            })).dish_id
         })
-        let line = filter[0].attributes.line_items.filter( find_line => {
-            return (find_line.id === lineItemId)
-        })
-        let dish = api.get(`dishes/${line[0].dish_id}`)
-        .then(dishes => {
-            console.log(dishes)
-            let hash = {
-                id: line[0].id,
-                order_id: line[0].order_id,
-                dish_id: line[0].dish_id,
-                dish_name: dishes.data.attributes.name,
-                dish_price: dishes.data.attributes.price
-            }
-            console.log(hash)
-            let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
-            l.renderDishLineItem()
-        })
+        console.log("dish", dish)
+        let hash = {
+            id: lineItemId,
+            order_id: id,
+            dish_id: dish.id,
+            dish_name: dish.name,
+            dish_price: dish.price
+        }
+        console.log("hash", hash)
+        let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
+        l.renderDishLineItem()
     })
 }
 
