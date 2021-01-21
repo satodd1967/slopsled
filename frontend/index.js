@@ -17,7 +17,7 @@ function getCategories() {
     let startButtonDiv = document.getElementById("start-order");
     startButtonDiv.innerHTML = "";
     let orderHeaderDiv = document.getElementById("line-items-header")
-    orderHeaderDiv.innerHTML = "<h3>Current Order</h3>"
+    orderHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     createOrder();
     fetchCategories();
 }

@@ -8,27 +8,37 @@
     padding: 10px;
 }
 
-#column-left {
+#column-1 {
     float: left;
     padding: 10px;
     height: 100%;
-    width: 30%;
+    width: 25%;
     background-color: #bbb;
 }
 
-#column-right {
+#column-2 {
     float: left;
     padding: 10px;
     height: 100%;
-    width: 35%;
+    width: 20%;
     background-color: #bbb;
 }
 
-#column-center {
+#column-3 {
     float: left;
     padding: 10px;
     height: 100%;
-    width: 35%;
+    width: 15%;
+    /* text-align: center; */
+    background-color: #bbb;
+}
+
+#column-4 {
+    float: left;
+    padding: 10px;
+    height: 100%;
+    width: 40%;
+    /* text-align: center; */
     background-color: #bbb;
 }
 
