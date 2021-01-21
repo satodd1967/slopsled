@@ -94,43 +94,15 @@ function fetchDishesForObject(id, object){
     }
 }
 
-// function fetchOrderDishes(id) {
-//     let orderDishesDiv = document.getElementById("line-item-container")
-//     orderDishesDiv.innerHTML = ""
-//     let Orders = api.get("orders")
-//     .then(orders => {
-//         let filter = orders.data.filter( find_item => {
-//             return (find_item.attributes.id === id)
-//         })
-//         let lines = (filter.map( data => data.attributes.line_items))[0]
-//         for (let line of lines){
-//             let dish = api.get(`dishes/${line.dish_id}`)
-//             .then(dishes => {
-//                 let hash = {
-//                     id: line.id,
-//                     order_id: line.order_id,
-//                     dish_id: line.dish_id,
-//                     dish_name: dishes.data.attributes.name,
-//                     dish_price: dishes.data.attributes.price
-//                 }
-//                 let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
-//                 l.renderDishLineItem()
-//             })
-//         }
-//     })
-// }
-
 function fetchOrderDishes(id, lineItemId) {
     let Orders = api.get("orders")
     .then(orders => {
         let filter = orders.data.filter( find_item => {
             return (find_item.attributes.id === id)
         })
-        // console.log(filter[0].attributes.line_items)
         let line = filter[0].attributes.line_items.filter( find_line => {
             return (find_line.id === lineItemId)
         })
-        // console.log(line)
         let dish = api.get(`dishes/${line[0].dish_id}`)
         .then(dishes => {
             console.log(dishes)
@@ -182,9 +154,7 @@ function getLineItemForDelete() {
     let lineItem = api.delete(`line_items/${lineItemId}`)
     fetchOrderForCalc(currentOrder[0].id)
     let delItem = document.getElementById(`${lineItemId}`)
-    console.log(delItem)
     delItem.innerHTML = ""
-    // fetchOrderDishes(currentOrder[0].id)
 }
 
 function createCustomer(){
