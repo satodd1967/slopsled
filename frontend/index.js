@@ -38,7 +38,6 @@ function getDishes(restaurantId) {
 }
 
 function addLineItem(dishId) {
-    // let dishId = parseInt(event.target.dataset.id);
     fetchDishesForObject(dishId, "lineItem")
     fetchOrderForCalc(currentOrder[0].id)
 }
