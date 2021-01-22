@@ -15,10 +15,12 @@ function start(){
 }
 
 function getCategories() {
-    let startButtonDiv = document.getElementById("start-order");
-    startButtonDiv.innerHTML = "";
+    let startOrderDiv = document.getElementById("start-order");
+    startOrderDiv.innerHTML = "";
     let orderHeaderDiv = document.getElementById("line-items-header")
     orderHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
+    let orderDiv = document.getElementById("order")
+    orderDiv.innerHTML = "<h4>Your Order</h4>"
     createOrder()
     fetchCategories();
 }
@@ -164,8 +166,6 @@ function createCustomer(){
 }
 
 function createOrder(){
-    let orderDiv = document.getElementById("order")
-    orderDiv.innerHTML = "<h4>Your Order</h4>"
     let jsOrder = {
         subtotal: 0,
         tax: 0,
