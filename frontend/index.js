@@ -17,8 +17,8 @@ function start(){
 function getCategories() {
     let startOrderDiv = document.getElementById("start-order");
     startOrderDiv.innerHTML = "";
-    let orderHeaderDiv = document.getElementById("line-items-header")
-    orderHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
+    let lineItemsHeaderDiv = document.getElementById("line-items-header")
+    lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     let orderDiv = document.getElementById("order")
     orderDiv.innerHTML = "<h4>Your Order</h4>"
     createOrder()
