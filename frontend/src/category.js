@@ -13,8 +13,10 @@ class Category{
         <ul>
         <h4>${this.name}</h4>
         <li>${this.description}</li>
-        <li><button class="choose-category-btn" data-id=${this.id} onclick="getRestaurants()">Choose</button></li>
+        <li><button id="${this.id}" class="choose-category-btn" data-id=${this.id} onclick="getRestaurants()">Choose</button></li>
         </ul>
         `
+        let renderedCategory = document.getElementById(`${this.id}`)
+        renderedCategory.addEventListener("click", getRestaurants(this.id))
     }
 }

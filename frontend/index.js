@@ -25,10 +25,9 @@ function getCategories() {
     fetchCategories();
 }
 
-function getRestaurants() {
-    let categoriesDiv = document.getElementById("categories-container");
-    categoriesDiv.innerHTML = "";
-    let catId = parseInt(event.target.dataset.id);
+function getRestaurants(catId) {
+    let categoriesContainerDiv = document.getElementById("categories-container");
+    categoriesContainerDiv.innerHTML = "";
     fetchRestaurantsByCat(catId) 
 }
 
