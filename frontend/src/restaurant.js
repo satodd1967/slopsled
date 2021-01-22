@@ -17,15 +17,6 @@ class Restaurant{
             chooseButton.addEventListener("click", () => { getDishes(this.id); });
         u.append(name, description, chooseButton)
         restaurantsContainerDiv.append(u)
-
-        // restaurantsDiv.innerHTML +=
-        // `
-        // <ul>
-        // <h4>${this.name}</h4>
-        // <li>${this.description}</li>
-        // <li><button id="${this.id}" class="choose-restaurant-btn" data-id=${this.id}>Choose</button></li>
-        // </ul>
-        // `
     }
 
 }
