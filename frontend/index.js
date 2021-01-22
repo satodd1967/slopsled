@@ -25,17 +25,16 @@ function getCategories() {
     fetchCategories();
 }
 
-function getRestaurants(catId) {
+function getRestaurants(categoryId) {
     let categoriesContainerDiv = document.getElementById("categories-container");
     categoriesContainerDiv.innerHTML = "";
-    fetchRestaurantsByCat(catId) 
+    fetchRestaurantsByCat(categoryId) 
 }
 
-function getDishes() {
+function getDishes(restaurantId) {
     let dishesDiv = document.getElementById("restaurants-container");
     dishesDiv.innerHTML = "";
-    let restId = parseInt(event.target.dataset.id);
-    fetchDishesForObject(restId, "restaurant") 
+    fetchDishesForObject(restaurantId, "restaurant") 
 }
 
 function addLineItem() {

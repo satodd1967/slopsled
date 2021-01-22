@@ -6,17 +6,16 @@ class Category{
     }
 
     renderCategory() {
-        let categoriesDiv = document.getElementById("categories-container")
-
-        categoriesDiv.innerHTML +=
-        `
-        <ul>
-        <h4>${this.name}</h4>
-        <li>${this.description}</li>
-        <li><button id="${this.id}" class="choose-category-btn" data-id=${this.id} onclick="getRestaurants()">Choose</button></li>
-        </ul>
-        `
-        let renderedCategory = document.getElementById(`${this.id}`)
-        renderedCategory.addEventListener("click", getRestaurants(this.id))
+        let categoriesContainerDiv = document.getElementById("categories-container")
+        let u = document.createElement("ul")
+        let name = document.createElement("h4")
+            name.innerText = `${this.name}`
+        let description = document.createElement("li")
+            description.innerText = `${this.description}`
+        let chooseButton = document.createElement("button")
+            chooseButton.textContent = "Choose"
+            chooseButton.addEventListener("click", () => { getRestaurants(this.id); });
+        u.append(name, description, chooseButton)
+        categoriesContainerDiv.append(u)
     }
 }
