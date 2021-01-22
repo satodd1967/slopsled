@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
-    start()
     api = new ApiCall
     createCustomer()
+    start()
 })
 
 function start(){
-    let startOrderDiv = document.getElementById("start-order")
-
-    startOrderDiv.innerHTML +=
-    `
-    <button class="start-btn" onclick="getCategories()">Start Order</button>
-    `
+    const startOrderDiv = document.getElementById("start-order")
+    // startOrderDiv.style.textAlign = "center";
+    const startImage = document.createElement('img')
+    startImage.src = "images/StartOrder.png";
+    startImage.alt = "Click Here";
+    startImage.style.width = "75%";
+    startImage.addEventListener("click", getCategories)
+    startOrderDiv.append(startImage);
 }
 
 function getCategories() {
@@ -18,7 +20,7 @@ function getCategories() {
     startButtonDiv.innerHTML = "";
     let orderHeaderDiv = document.getElementById("line-items-header")
     orderHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
-    createOrder();
+    createOrder()
     fetchCategories();
 }
 
@@ -39,9 +41,7 @@ function getDishes() {
 function addLineItem() {
     let dishId = parseInt(event.target.dataset.id);
     fetchDishesForObject(dishId, "lineItem")
-    // fetchOrderDishes(currentOrder[0].id)
     fetchOrderForCalc(currentOrder[0].id)
-    // fetchOrderForCalc2(currentOrder[0].id)
 }
 
 function fetchCategories(){

@@ -13,12 +13,11 @@ class Dish{
         dishesDiv.innerHTML +=
         `
         <ul>
-        <h4>Name: ${this.name}</h4>
+        <h4>${this.name}</h4>
         <li>description: ${this.description}</li>
         <li>price: ${this.price}</li>
-        <li>Restaurant: ${this.restaurant_id}</li>
+        <li><button class="add-dish-btn" data-id=${this.id} onclick="addLineItem()">Add</button></li>
         </ul>
-        <button class="add-dish-btn" data-id=${this.id} onclick="addLineItem()">Add</button>
         `
     }
 

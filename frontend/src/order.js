@@ -12,7 +12,6 @@ class Order{
 
     renderNewOrder(){
         let newOrderDiv = document.getElementById("new-order-div")
-
         newOrderDiv.innerHTML +=
         `
         <ul>

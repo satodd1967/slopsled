@@ -11,10 +11,10 @@ class Restaurant{
         restaurantsDiv.innerHTML +=
         `
         <ul>
-        <h4>Name: ${this.name}</h4>
-        <li>description: ${this.description}</li>
+        <h4>${this.name}</h4>
+        <li>${this.description}</li>
+        <li><button class="choose-restaurant-btn" data-id=${this.id} onclick="getDishes()">Choose</button></li>
         </ul>
-        <button class="choose-restaurant-btn" data-id=${this.id} onclick="getDishes()">Choose</button>
         `
     }
 
