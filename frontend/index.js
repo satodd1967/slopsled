@@ -41,6 +41,7 @@ function addLineItem() {
     fetchDishesForObject(dishId, "lineItem")
     // fetchOrderDishes(currentOrder[0].id)
     fetchOrderForCalc(currentOrder[0].id)
+    // fetchOrderForCalc2(currentOrder[0].id)
 }
 
 function fetchCategories(){
@@ -102,7 +103,6 @@ function fetchOrderDishes(id, lineItemId) {
                 return find_li.id === lineItemId
             })).dish_id
         })
-        console.log("dish", dish)
         let hash = {
             id: lineItemId,
             order_id: id,
@@ -110,7 +110,6 @@ function fetchOrderDishes(id, lineItemId) {
             dish_name: dish.name,
             dish_price: dish.price
         }
-        console.log("hash", hash)
         let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
         l.renderDishLineItem()
     })
@@ -119,18 +118,18 @@ function fetchOrderDishes(id, lineItemId) {
 function fetchOrderForCalc(id) {
     let Orders = api.get("orders")
     .then(orders => {
-        let filter = orders.data.filter( find_item => {
+        let found = orders.data.find( find_item => {
             return (find_item.attributes.id === id)
         })
-    let plates = (filter.map( data => data.attributes.dishes))[0]
-    let orderSubTotal = (plates.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
-    let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
-    let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
-    let orderUpdate = {
-        subtotal: orderSubTotal,
-        tax: orderTax,
-        total: orderTotal,
-    }
+        let dishes = found.attributes.dishes.map( data => data)
+        let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
+        let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
+        let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
+        let orderUpdate = {
+            subtotal: orderSubTotal,
+            tax: orderTax,
+            total: orderTotal,
+        }
     updateOrder(id, orderUpdate)
     })
 }
