@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function start(){
     const startOrderDiv = document.getElementById("start-order")
-    // startOrderDiv.style.textAlign = "center";
     const startImage = document.createElement('img')
     startImage.src = "images/StartOrder.png";
     startImage.alt = "Click Here";
