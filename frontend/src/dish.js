@@ -9,16 +9,19 @@ class Dish{
     }
 
     renderDish() {
-        let dishesDiv = document.getElementById("dishes-container")
-        dishesDiv.innerHTML +=
-        `
-        <ul>
-        <h4>${this.name}</h4>
-        <li>description: ${this.description}</li>
-        <li>price: ${this.price}</li>
-        <li><button class="add-dish-btn" data-id=${this.id} onclick="addLineItem()">Add</button></li>
-        </ul>
-        `
+        let dishesContainerDiv = document.getElementById("dishes-container")
+        let u = document.createElement("ul")
+        let name = document.createElement("h4")
+            name.innerText = `${this.name}`
+        let description = document.createElement("li")
+            description.innerText = `${this.description}`
+        let price = document.createElement("li")
+            price.innerText =  `${this.price}`
+        let addButton = document.createElement("button")
+            addButton.textContent = "Add"
+            addButton.addEventListener("click", () => { addLineItem(this.id); });
+        u.append(name, description, price, addButton)
+        dishesContainerDiv.append(u)
     }
 
 }
