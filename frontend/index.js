@@ -53,6 +53,7 @@ function fetchCategories(){
     })
 }
 
+
 function fetchRestaurantsByCat(category){
     let restaurants = api.get("restaurants")
     .then(restaurants => {
@@ -94,10 +95,10 @@ function fetchDishesForObject(id, object){
 }
 
 function fetchOrderDishes(id, lineItemId) {
-    let Orders = api.get(`orders/${id}`)
-    .then(orders => {
-        let dish = orders.data.attributes.dishes.find( find_dish => {
-            return find_dish.id === (orders.data.attributes.line_items.find( find_li => {
+    let Order = api.get(`orders/${id}`)
+    .then(order => {
+        let dish = order.data.attributes.dishes.find( find_dish => {
+            return find_dish.id === (order.data.attributes.line_items.find( find_li => {
                 return find_li.id === lineItemId
             })).dish_id
         })
