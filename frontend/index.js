@@ -147,7 +147,11 @@ function getLineItemForDelete(lineItemId) {
     let lineItem = api.delete(`line_items/${lineItemId}`)
     fetchOrderForCalc(currentOrder[0].id)
     let delItem = document.getElementById(`${lineItemId}`)
-    delItem.innerHTML = ""
+    delItem.remove();
+    let placeYourOrderDiv = document.getElementById("place-your-order")
+    if (!document.querySelector(".checkOrder")) {
+        placeYourOrderDiv.innerHTML = ""
+    }
 }
 
 function createCustomer(){
@@ -182,4 +186,9 @@ function createLineItem(object) {
     .then(lineItem => {
         fetchOrderDishes(currentOrder[0].id, lineItem.id)
     })
+}
+
+function createCustomerForm() {
+    const customerForm = document.creaeteElement('form')
+    
 }
