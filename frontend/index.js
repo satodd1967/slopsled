@@ -94,8 +94,8 @@ function fetchDishesForObject(id, object){
     }
 }
 
-function fetchOrderDishes(id, lineItemId) {
-    let Order = api.get(`orders/${id}`)
+function fetchOrderDishes(currentOrderId, lineItemId) {
+    let Order = api.get(`orders/${currentOrderId}`)
     .then(order => {
         let dish = order.data.attributes.dishes.find( find_dish => {
             return find_dish.id === (order.data.attributes.line_items.find( find_li => {
@@ -104,7 +104,7 @@ function fetchOrderDishes(id, lineItemId) {
         })
         let hash = {
             id: lineItemId,
-            order_id: id,
+            order_id: currentOrderId,
             dish_id: dish.id,
             dish_name: dish.name,
             dish_price: dish.price
@@ -143,8 +143,7 @@ function updateOrder(id, object) {
     })
 }
 
-function getLineItemForDelete() {
-    let lineItemId = parseInt(event.target.dataset.id);
+function getLineItemForDelete(lineItemId) {
     let lineItem = api.delete(`line_items/${lineItemId}`)
     fetchOrderForCalc(currentOrder[0].id)
     let delItem = document.getElementById(`${lineItemId}`)

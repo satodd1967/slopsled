@@ -8,15 +8,20 @@ class LineItemRender{
     }
 
     renderDishLineItem() {
-        let dishItemDiv = document.getElementById("line-item-container")
-
-        dishItemDiv.innerHTML +=
-        `
-        <ul id=${this.id}>
-        <li><button class="dish-delete-btn" data-id=${this.id} onclick="getLineItemForDelete()">Delete</button>
-        ${this.dish_name} - ${this.dish_price}</li>
-        </ul>
-        `
+        let lineItemContainerDiv = document.getElementById("line-item-container")
+        let u = document.createElement("ul")
+            u.id= `${this.id}`
+        let details = document.createElement("li")
+        let name = document.createElement("span")
+            name.innerText = ` ${this.dish_name} - `
+        let price = document.createElement("span")
+            price.innerText = `${this.dish_price}`
+        let deleteButton = document.createElement("button")
+            deleteButton.textContent = "delete"
+            deleteButton.addEventListener("click", () => { getLineItemForDelete(this.id); });
+        details.append(deleteButton, name, price)
+        u.append(details)
+        lineItemContainerDiv.append(u)
     }
 
 }
