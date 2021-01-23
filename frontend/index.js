@@ -225,9 +225,7 @@ function createCustomerForm() {
 function submitCustomer(e) {
     e.preventDefault()
     let userName = e.target.children.username.value
-    console.log(userName)
     let email = e.target.children.email.value
-    console.log(email)
     let customerObject = {
         username: userName,
         email: email
@@ -240,7 +238,6 @@ function updateCustomerPlaceOrder(customerId, customerObject) {
     .then(customer => {
         currentCustomer = []
         let c = new Customer(customer.id, customer.username, customer.email)
-        console.log("c", c)
         console.log("customer", customer)
     })
 }
