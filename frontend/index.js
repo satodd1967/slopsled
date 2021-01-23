@@ -189,6 +189,13 @@ function createLineItem(object) {
 }
 
 function createCustomerForm() {
-    const customerForm = document.creaeteElement('form')
-    
+    customerFormDiv = document.getElementById("customerForm")
+    let customerForm = document.createElement('form')
+    customerForm.innerHTML += 
+    `
+    <input type="text" id="username">
+    <input type="email" id="email">
+    <input type="submit">
+    `
+    customerFormDiv.append(customerForm)
 }
