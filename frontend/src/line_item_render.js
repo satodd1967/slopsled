@@ -27,9 +27,8 @@ class LineItemRender{
         if (!document.getElementById("order-button")) {
             let orderButton  = document.createElement("button");
             orderButton.id= "order-button";
-            console.log(orderButton);
             orderButton.textContent = "Place Order";
-            orderButton.addEventListener("click", createCustomerForm);
+            orderButton.addEventListener("click", createCustomerFormDivs);
             placeYourOrderDiv.append(orderButton);
         }
     }

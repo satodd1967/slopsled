@@ -138,6 +138,7 @@ function updateOrder(id, object) {
     updateOrderDiv.innerHTML = ""
     let order = api.update(`orders/${id}`, object)
     .then(orders => {
+        currentOrder = []
         let o = new Order(orders.id, orders.subtotal, orders.tax, orders.total, orders.customer_id)
         o.renderNewOrder()
     })
@@ -188,14 +189,59 @@ function createLineItem(object) {
     })
 }
 
+function createCustomerFormDivs() {
+    wrapper = document.getElementById("wrapper")
+    customerFormBox = document.createElement("div")
+    customerFormBox.id= "customer-form-box"
+    customerForm = document.createElement("div")
+    customerForm.id= "customer-form"
+    wrapper.prepend(customerFormBox)
+    customerFormBox.append(customerForm)
+    createCustomerForm()
+}
+
 function createCustomerForm() {
-    customerFormDiv = document.getElementById("customerForm")
+    customerFormDiv = document.getElementById("customer-form")
+    let customerFormHeader = document.createElement("h4")
+    customerFormHeader.id= "customer-form-header"
+    customerFormHeader.innerHTML = 
+    `
+    Please enter your information!
+    `
     let customerForm = document.createElement('form')
     customerForm.innerHTML += 
     `
-    <input type="text" id="username">
-    <input type="email" id="email">
+    <label for="username">Username:</label>
+    <input type="text" id="username"><br>
+    <label for="email">Email:</lable></label>
+    <input type="email" id="email"><br>
     <input type="submit">
     `
+    customerFormDiv.append(customerFormHeader)
     customerFormDiv.append(customerForm)
+    customerForm.addEventListener("submit", submitCustomer)
 }
+
+function submitCustomer(e) {
+    e.preventDefault()
+    let userName = e.target.children.username.value
+    console.log(userName)
+    let email = e.target.children.email.value
+    console.log(email)
+    let customerObject = {
+        username: userName,
+        email: email
+    }
+    updateCustomerPlaceOrder(currentCustomer[0].id, customerObject)
+}
+
+function updateCustomerPlaceOrder(customerId, customerObject) {
+    let customer = api.update(`customers/${customerId}`, customerObject)
+    .then(customer => {
+        currentCustomer = []
+        let c = new Customer(customer.id, customer.username, customer.email)
+        console.log("c", c)
+        console.log("customer", customer)
+    })
+}
+

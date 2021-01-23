@@ -52,4 +52,25 @@
     text-align: center;
 }
 
+#customer-form {
+    text-align: right;
+    margin-right: 85px;
+    margin-top: 100px;
+}
+
+#customer-form-box {
+    z-index: 1;
+    width:400px; 
+    height:600px; 
+    position: fixed; 
+    background-color: gray; 
+    top: 25%; 
+    left: 40%; 
+    margin-top: -100px; 
+    margin-left: -100px; 
+}
+
+#order-details {
+    text-align: center;
+}
 
