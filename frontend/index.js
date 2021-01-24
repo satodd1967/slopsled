@@ -116,11 +116,9 @@ function fetchOrderDishes(currentOrderId, lineItemId) {
 }
 
 function fetchOrderForCalc(id) {
-    console.log("id", id)
     let Order = api.get(`orders/${id}`)
     .then(order => {
         let dishes = order.data.attributes.dishes
-        console.log("dishes", dishes)
         let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
         let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
         let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
