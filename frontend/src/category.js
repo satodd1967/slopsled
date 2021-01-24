@@ -1,9 +1,15 @@
 class Category{
-    constructor(id, name, description, image) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
+
+    static allCategories = []
+
+    constructor(category) {
+        this.id = category.id;
+        this.name = category.name;
+        this.description = category.description;
+        this.image = category.image;
+        this.restaurants = category.restaurants
+        this.dishes = category.dishes
+        Category.allCategories.push(this)
     }
 
     static fetchCategories(){
@@ -11,7 +17,7 @@ class Category{
         .then(categories => {
             let cats = categories.data.map( data => data.attributes)
             for (let cat of cats){
-                let category = new Category(cat.id, cat.name, cat.description, cat.image)
+                let category = new Category(cat)
                 category.renderCategory();
             }
         })

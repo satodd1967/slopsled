@@ -42,18 +42,6 @@ function addLineItem(dishId) {
     fetchDishesForObject(dishId, "lineItem")
 }
 
-// function fetchCategories(){
-//     let categories = api.get("categories")
-//     .then(categories => {
-//         let cats = categories.data.map( data => data.attributes)
-//         for (let cat of cats){
-//             let c = new Category(cat.id, cat.name, cat.description, cat.image)
-//             c.renderCategory();
-//         }
-//     })
-// }
-
-
 function fetchRestaurantsByCat(category){
     let restaurants = api.get("restaurants")
     .then(restaurants => {
