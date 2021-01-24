@@ -5,18 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 function start(){
-    const startOrderDiv = document.getElementById("start-order")
+    const startImageDiv = document.getElementById("start-image")
     const startImage = document.createElement('img')
     startImage.src = "images/StartOrder.png";
     startImage.alt = "Click Here";
-    startImage.style.width = "75%";
+    startImage.style.width = "40%";
     startImage.addEventListener("click", getCategories)
-    startOrderDiv.append(startImage);
+    startImageDiv.append(startImage);
 }
 
 function getCategories() {
-    let startOrderDiv = document.getElementById("start-order");
-    startOrderDiv.innerHTML = "";
+    let startImageDiv = document.getElementById("start-image");
+    startImageDiv.remove();
     let lineItemsHeaderDiv = document.getElementById("line-items-header")
     lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     let orderDiv = document.getElementById("order")
@@ -47,7 +47,7 @@ function fetchCategories(){
     .then(categories => {
         let cats = categories.data.map( data => data.attributes)
         for (let cat of cats){
-            let c = new Category(cat.id, cat.name, cat.description)
+            let c = new Category(cat.id, cat.name, cat.description, cat.image)
             c.renderCategory();
         }
     })
@@ -228,7 +228,7 @@ function createThankYouMessage() {
     customerThankYou = document.createElement("h4")
     customerThankYou.innerHTML = "Thank you for your Order!"
     customerFormDiv.append(customerThankYou)
-    window.setTimeout(orderReset, 3000)
+    window.setTimeout(orderReset, 1000)
 }
 
 function orderReset() {
@@ -251,7 +251,6 @@ function updateCustomerPlaceOrder(customerId, customerObject) {
     .then(customer => {
         currentCustomer = []
         let c = new Customer(customer.id, customer.username, customer.email)
-        console.log("customer", customer)
     })
     createThankYouMessage()
 }
