@@ -13,9 +13,7 @@ class Dish{
         let u = document.createElement("ul")
         let name = document.createElement("h4")
             name.innerText = `${this.name}`
-            name.style.marginBottom = "3px"
-            name.style.marginTop = "3px"
-            name.style.textAlign = "justify"
+            name.className= "list-name"
         let description = document.createElement("li")
             description.innerText = `${this.description}`
         let price = document.createElement("li")

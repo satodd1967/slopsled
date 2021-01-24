@@ -6,22 +6,33 @@ class Category{
         this.image = image;
     }
 
-    renderCategory() {
+    static fetchCategories(){
+        let categories = api.get("categories")
+        .then(categories => {
+            let cats = categories.data.map( data => data.attributes)
+            for (let cat of cats){
+                let category = new Category(cat.id, cat.name, cat.description, cat.image)
+                category.renderCategory();
+            }
+        })
+    }
+
+    renderCategory(category) {
         let categoriesContainerDiv = document.getElementById("categories-container")
         let u = document.createElement("ul")
         let name = document.createElement("h4")
-            name.style.marginBottom = "3px"
-            name.style.marginTop = "3px"
-            name.style.textAlign = "justify"
+            name.className= "list-name"
             name.innerText = `${this.name}`
-        let image = document.createElement("img")
-            image.src = `${this.image}`;
-            image.alt = "Click Here";
-            image.style.width = "75%";
-            image.addEventListener("click", () => { getRestaurants(this.id); });
+        let image = service.createImage(`${this.image}`, "75%", `${getRestaurants}`, `${this.id}`)
+            // image.src = `${this.image}`;
+            // image.alt = "Click Here";
+            // image.style.width = "75%";
+            // image.addEventListener("click", () => { getRestaurants(this.id); });
         let description = document.createElement("li")
             description.innerText = `${this.description}`
         u.append(image, name, description)
         categoriesContainerDiv.append(u)
     }
+
 }
+

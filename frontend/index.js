@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     api = new ApiCall
+    service = new Service
     createCustomer()
     start()
 })
@@ -22,13 +23,26 @@ function getCategories() {
     let orderDiv = document.getElementById("order")
     orderDiv.innerHTML = "<h4>Your Order</h4>"
     createOrder()
+    Category.fetchCategories();
+}
+
+function backToCategories() {
+    let dishesContainerDiv = document.getElementById("dishes-container")
+    dishesContainerDiv.innerHTML = ""
+    let restaurantsContainerDiv = document.getElementById("restaurants-container")
+    restaurantsContainerDiv.innterHTML = ""
     fetchCategories();
 }
 
 function getRestaurants(categoryId) {
     let categoriesContainerDiv = document.getElementById("categories-container");
     categoriesContainerDiv.innerHTML = "";
-    fetchRestaurantsByCat(categoryId) 
+    fetchRestaurantsByCat(categoryId)
+    let navBarDiv = document.getElementById("nav-bar")
+        let catButton = document.createElement("button")
+            catButton.textContent = "Categories"
+            catButton.addEventListener("Click", backToCategories);
+        navBarDiv.append(catButton); 
 }
 
 function getDishes(restaurantId) {
@@ -41,16 +55,16 @@ function addLineItem(dishId) {
     fetchDishesForObject(dishId, "lineItem")
 }
 
-function fetchCategories(){
-    let categories = api.get("categories")
-    .then(categories => {
-        let cats = categories.data.map( data => data.attributes)
-        for (let cat of cats){
-            let c = new Category(cat.id, cat.name, cat.description, cat.image)
-            c.renderCategory();
-        }
-    })
-}
+// function fetchCategories(){
+//     let categories = api.get("categories")
+//     .then(categories => {
+//         let cats = categories.data.map( data => data.attributes)
+//         for (let cat of cats){
+//             let c = new Category(cat.id, cat.name, cat.description, cat.image)
+//             c.renderCategory();
+//         }
+//     })
+// }
 
 
 function fetchRestaurantsByCat(category){
