@@ -26,23 +26,10 @@ function getCategories() {
     Category.fetchCategories();
 }
 
-function backToCategories() {
-    let dishesContainerDiv = document.getElementById("dishes-container")
-    dishesContainerDiv.innerHTML = ""
-    let restaurantsContainerDiv = document.getElementById("restaurants-container")
-    restaurantsContainerDiv.innterHTML = ""
-    fetchCategories();
-}
-
 function getRestaurants(categoryId) {
     let categoriesContainerDiv = document.getElementById("categories-container");
     categoriesContainerDiv.innerHTML = "";
     fetchRestaurantsByCat(categoryId)
-    let navBarDiv = document.getElementById("nav-bar")
-        let catButton = document.createElement("button")
-            catButton.textContent = "Categories"
-            catButton.addEventListener("Click", backToCategories);
-        navBarDiv.append(catButton); 
 }
 
 function getDishes(restaurantId) {

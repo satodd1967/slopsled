@@ -23,16 +23,15 @@ class Category{
         let name = document.createElement("h4")
             name.className= "list-name"
             name.innerText = `${this.name}`
-        let image = service.createImage(`${this.image}`, "75%", `${getRestaurants}`, `${this.id}`)
-            // image.src = `${this.image}`;
-            // image.alt = "Click Here";
-            // image.style.width = "75%";
-            // image.addEventListener("click", () => { getRestaurants(this.id); });
+        let image = document.createElement("img")
+            image.src = `${this.image}`;
+            image.alt = "Click Here";
+            image.style.width = "75%";
+            image.addEventListener("click", () => { getRestaurants(this.id); });
         let description = document.createElement("li")
             description.innerText = `${this.description}`
         u.append(image, name, description)
         categoriesContainerDiv.append(u)
     }
-
 }
 
