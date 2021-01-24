@@ -21,9 +21,6 @@ class Restaurant{
             image.alt = "Click Here";
             image.style.width = "75%";
             image.addEventListener("click", () => { getDishes(this.id); });
-        // let chooseButton = document.createElement("button")
-        //     chooseButton.textContent = "Choose"
-        //     chooseButton.addEventListener("click", () => { getDishes(this.id); });
         u.append(image,name, description)
         restaurantsContainerDiv.append(u)
     }
