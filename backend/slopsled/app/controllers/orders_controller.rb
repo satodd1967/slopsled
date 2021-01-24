@@ -51,3 +51,4 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:subtotal, :tax, :total, :customer_id)
     end
 end
+

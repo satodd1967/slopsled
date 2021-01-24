@@ -11,9 +11,9 @@ jojo = Customer.create(username: "jojo", email: "jojo@gmail.com")
 jimmy = Customer.create(username: "jimmy", email: "jimmy@gmail.com")
 karen = Customer.create(username: "karen", email: "karen@gmail.com")
 
-japanese = Category.create(name: "Japanese", description: "sushi n shit")
-mexican = Category.create(name: "Mexican", description: "tacos n stuff")
-thai = Category.create(name: "Thai", description: "hot n spicy")
+japanese = Category.create(name: "Japanese", description: "sushi n shit", image: "images/japanese.png")
+mexican = Category.create(name: "Mexican", description: "tacos n stuff", image: "images/mexican.png")
+thai = Category.create(name: "Thai", description: "hot n spicy", image: "images/thai.png")
 
 shogun = Restaurant.create(name: "Shogun", description: "the way of the tuna", category: japanese)
 saparo = Restaurant.create(name: "Saparo", description: "the way of the samurai", category: japanese)
