@@ -59,6 +59,7 @@
 }
 
 #customer-form-box {
+    border-radius: 25px;
     z-index: 1;
     width:400px; 
     height:300px; 

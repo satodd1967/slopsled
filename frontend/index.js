@@ -39,7 +39,6 @@ function getDishes(restaurantId) {
 
 function addLineItem(dishId) {
     fetchDishesForObject(dishId, "lineItem")
-    // fetchOrderForCalc(currentOrder[0].id)
 }
 
 function fetchCategories(){

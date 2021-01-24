@@ -21,9 +21,6 @@ class Category{
             image.addEventListener("click", () => { getRestaurants(this.id); });
         let description = document.createElement("li")
             description.innerText = `${this.description}`
-        // let chooseButton = document.createElement("button")
-        //     chooseButton.textContent = "Choose"
-        //     chooseButton.addEventListener("click", () => { getRestaurants(this.id); });
         u.append(image, name, description)
         categoriesContainerDiv.append(u)
     }
