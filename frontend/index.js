@@ -39,7 +39,7 @@ function getDishes(restaurantId) {
 
 function addLineItem(dishId) {
     fetchDishesForObject(dishId, "lineItem")
-    fetchOrderForCalc(currentOrder[0].id)
+    // fetchOrderForCalc(currentOrder[0].id)
 }
 
 function fetchCategories(){
@@ -112,15 +112,15 @@ function fetchOrderDishes(currentOrderId, lineItemId) {
         let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
         l.renderDishLineItem()
     })
+    fetchOrderForCalc(currentOrderId)
 }
 
 function fetchOrderForCalc(id) {
-    let Orders = api.get("orders")
-    .then(orders => {
-        let found = orders.data.find( find_item => {
-            return (find_item.attributes.id === id)
-        })
-        let dishes = found.attributes.dishes.map( data => data)
+    console.log("id", id)
+    let Order = api.get(`orders/${id}`)
+    .then(order => {
+        let dishes = order.data.attributes.dishes
+        console.log("dishes", dishes)
         let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
         let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
         let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
@@ -146,7 +146,9 @@ function updateOrder(id, object) {
 
 function getLineItemForDelete(lineItemId) {
     let lineItem = api.delete(`line_items/${lineItemId}`)
-    fetchOrderForCalc(currentOrder[0].id)
+    .then(lineItem => {
+        fetchOrderForCalc(currentOrder[0].id)
+    })
     let delItem = document.getElementById(`${lineItemId}`)
     delItem.remove();
     let placeYourOrderDiv = document.getElementById("place-your-order")
@@ -255,4 +257,3 @@ function updateCustomerPlaceOrder(customerId, customerObject) {
     })
     createThankYouMessage()
 }
-

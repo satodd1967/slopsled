@@ -32,8 +32,8 @@ class ApiCall {
     }
 
     delete(url) {
-        fetch(`${this.baseUrl}/${url}`, {
-        method: 'DELETE'
+        return fetch(`${this.baseUrl}/${url}`, {
+        method: 'DELETE',
         })
     }
 
