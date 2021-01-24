@@ -222,6 +222,19 @@ function createCustomerForm() {
     customerForm.addEventListener("submit", submitCustomer)
 }
 
+function createThankYouMessage() {
+    customerFormDiv = document.getElementById("customer-form")
+    customerFormDiv.innerHTML = ""
+    customerThankYou = document.createElement("h4")
+    customerThankYou.innerHTML = "Thank you for your Order!"
+    customerFormDiv.append(customerThankYou)
+    window.setTimeout(orderReset, 3000)
+}
+
+function orderReset() {
+    location.reload()
+}
+
 function submitCustomer(e) {
     e.preventDefault()
     let userName = e.target.children.username.value
@@ -240,5 +253,6 @@ function updateCustomerPlaceOrder(customerId, customerObject) {
         let c = new Customer(customer.id, customer.username, customer.email)
         console.log("customer", customer)
     })
+    createThankYouMessage()
 }
 
