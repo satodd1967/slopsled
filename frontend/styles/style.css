@@ -54,14 +54,14 @@
 
 #customer-form {
     text-align: right;
-    margin-right: 85px;
+    margin-right: 89px;
     margin-top: 100px;
 }
 
 #customer-form-box {
     z-index: 1;
     width:400px; 
-    height:600px; 
+    height:300px; 
     position: fixed; 
     background-color: gray; 
     top: 25%; 
