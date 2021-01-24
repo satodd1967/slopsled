@@ -32,15 +32,15 @@ dish4 = Dish.create(name: "Dragon Roll", description: "The Mother Of", price: "2
 dish5 = Dish.create(name: "Hibachi Chicken", description: "Tastes Like Chicken", price: "31.99", image: "images/hibachichicken.png", restaurant: sapparo)
 dish6 = Dish.create(name: "Hibachi Steak", description: "Moo Cow", price: "35.99", image: "images/hibachisteak.png", restaurant: sapparo)
 dish7 = Dish.create(name: "Hibachi Shrimp", description: "They are little", price: "30.99", image: "images/hibachishrimp.png", restaurant: sapparo)
-dish8 = Dish.create(name: "Hibachi Filet", description: "Fancy Moo Cow", price: "45.99", image: "no image", restaurant: sapparo)
+dish8 = Dish.create(name: "Hibachi Filet", description: "Fancy Moo Cow", price: "45.99", image: "images/hibachifilet.png", restaurant: sapparo)
 
-dish6 = Dish.create(name: "Chicken Fajitas", description: "Tastes Like Mexican Chicken", price: "31.99", image: "images/chickenfahjitas.png", restaurant: eltiempo)
+dish6 = Dish.create(name: "Chicken Fajitas", description: "Tastes Like Mexican Chicken", price: "31.99", image: "images/chickenfajitas.png", restaurant: eltiempo)
 dish7 = Dish.create(name: "Steak Fajitas", description: "Tastes Like Mexican Moo Cow", price: "35.99", image: "images/steakfajitas.png", restaurant: eltiempo)
 dish8 = Dish.create(name: "Fish Fajitas", description: "Fishy Fishy", price: "36.99", image: "images/fishfajitas.png", restaurant: eltiempo)
 dish9 = Dish.create(name: "Mixed Fajitas", description: "Anything you want", price: "37.99", image: "images/mixedfajitas.png", restaurant: eltiempo)
 
-dish10 = Dish.create(name: "Chicken Enchiladas", description: "Cheesy Chicken", price: "31.99", image: "images/chickenenchiladas.png", restaurant: chipoltapec)
-dish11 = Dish.create(name: "Steak Enchiladas", description: "Cheesy Steak", price: "35.99", image: "images/steakenchiladas.png", restaurant: chipoltapec)
+dish10 = Dish.create(name: "Chicken Enchiladas", description: "Cheesy Chicken", price: "31.99", image: "images/chickenenchilada.png", restaurant: chipoltapec)
+dish11 = Dish.create(name: "Steak Enchiladas", description: "Cheesy Steak", price: "35.99", image: "images/steakenchilada.png", restaurant: chipoltapec)
 dish12 = Dish.create(name: "Quesadillas", description: "Cheesy Cheesy", price: "36.99", image: "images/quesadillas.png", restaurant: chipoltapec)
 dish13 = Dish.create(name: "Parillada", description: "All the stuff", price: "60.99", image: "images/parillada.png", restaurant: chipoltapec)
 
@@ -49,10 +49,10 @@ dish15 = Dish.create(name: "N2", description: "Noodles 2", price: "34.99", image
 dish16 = Dish.create(name: "N3", description: "Noodles 3", price: "35.99", image: "images/n3noodles.png", restaurant: thaicottage)
 dish17 = Dish.create(name: "N4", description: "Noodles 4", price: "36.99", image: "images/n3noodles.png", restaurant: thaicottage)
 
-dish18 = Dish.create(name: "Spicy N1", description: "Spicy Noodles 1", price: "31.99", image: "images/n1spicynoodles", restaurant: spicythai)
-dish19 = Dish.create(name: "Spicy N2", description: "Spicy Noodles 2", price: "32.99", image: "images/n2spicynoodles", restaurant: spicythai)
-dish20 = Dish.create(name: "Spicy N3", description: "Spicy Noodles 3", price: "33.99", image: "images/n3spicynoodles", restaurant: spicythai)
-dish21 = Dish.create(name: "Spicy N4", description: "Spicy Noodles 4", price: "34.99", image: "images/n4spicynoodles", restaurant: spicythai)
+dish18 = Dish.create(name: "Spicy N1", description: "Spicy Noodles 1", price: "31.99", image: "images/n1spicynoodles.png", restaurant: spicythai)
+dish19 = Dish.create(name: "Spicy N2", description: "Spicy Noodles 2", price: "32.99", image: "images/n2spicynoodles.png", restaurant: spicythai)
+dish20 = Dish.create(name: "Spicy N3", description: "Spicy Noodles 3", price: "33.99", image: "images/n3spicynoodles.png", restaurant: spicythai)
+dish21 = Dish.create(name: "Spicy N4", description: "Spicy Noodles 4", price: "34.99", image: "images/n4spicynoodles.png", restaurant: spicythai)
 
 
 o1 = Order.create(subtotal: "0", tax: "0", total: "0", customer: jojo)
