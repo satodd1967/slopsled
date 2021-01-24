@@ -61,7 +61,7 @@ function fetchRestaurantsByCat(category){
         })
         let rests = filter.map( data => data.attributes)
         for (let rest of rests){
-            let r = new Restaurant(rest.id, rest.name, rest.description)
+            let r = new Restaurant(rest.id, rest.name, rest.description, rest.image)
             r.renderRestaurant();
         }
     })

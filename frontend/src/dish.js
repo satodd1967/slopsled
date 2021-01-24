@@ -13,14 +13,22 @@ class Dish{
         let u = document.createElement("ul")
         let name = document.createElement("h4")
             name.innerText = `${this.name}`
+            name.style.marginBottom = "3px"
+            name.style.marginTop = "3px"
+            name.style.textAlign = "justify"
         let description = document.createElement("li")
             description.innerText = `${this.description}`
         let price = document.createElement("li")
             price.innerText =  `${this.price}`
+        let image = document.createElement("img")
+            image.src = `${this.image}`;
+            image.alt = "Click Here";
+            image.style.width = "40%";
+            image.addEventListener("click", () => { addLineItem(this.id); });
         let addButton = document.createElement("button")
             addButton.textContent = "Add"
             addButton.addEventListener("click", () => { addLineItem(this.id); });
-        u.append(name, description, price, addButton)
+        u.append(image, name, description, price, addButton)
         dishesContainerDiv.append(u)
     }
 
