@@ -85,9 +85,11 @@ function updateOrder(workingOrderId, orderUpdate) {
     let updateOrderDiv = document.getElementById("new-order-div")
     updateOrderDiv.innerHTML = ""
     let order = api.update(`orders/${workingOrderId}`, orderUpdate)
-    .then(orders => {
-        currentOrder = []
-        let o = new Order(orders.id, orders.subtotal, orders.tax, orders.total, orders.customer_id)
+    .then(order => {
+        console.log("order", order.data.attributes)
+        Order.workingOrder = []
+        let o = new Order(order.data.attributes)
+        console.log("o", o)
         o.renderNewOrder()
     })
 }

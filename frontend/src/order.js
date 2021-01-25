@@ -28,6 +28,14 @@ class Order{
         })
     }
 
+    static workingOrderUpdate() {
+        let order = api.get(`orders/${this.workingOrder[0].id}`)
+        .then(order  => {
+            this.workingOrder = []
+            this.workingOrder.push(order)
+        })
+    }
+
     renderNewOrder(){
         let newOrderDiv = document.getElementById("new-order-div")
         newOrderDiv.innerHTML +=

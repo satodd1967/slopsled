@@ -28,7 +28,6 @@ class Dish{
             return (find_dish.restaurant_id === restaurantId)
         })
         for (let dish of dishes){
-            console.log("dish", dish)
             dish.renderDish();
         }
     }
