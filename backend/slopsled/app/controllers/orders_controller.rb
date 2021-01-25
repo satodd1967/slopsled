@@ -29,7 +29,8 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1
   def update
     if @order.update(order_params)
-      render json: @order
+      # render json: @order
+      render json: OrderSerializer.new(@order)
     else
       render json: @order.errors, status: :unprocessable_entity
     end
