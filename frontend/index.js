@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     api = new ApiCall
     service = new Service
-    createCustomer()
+    Customer.createCustomer()
+    Restaurant.fetchRestaurants()
+    Dish.fetchDishes()
     start()
 })
 
@@ -22,68 +24,28 @@ function getCategories() {
     lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     let orderDiv = document.getElementById("order")
     orderDiv.innerHTML = "<h4>Your Order</h4>"
-    createOrder()
+    Order.createOrder()
     Category.fetchCategories();
 }
 
 function getRestaurants(categoryId) {
     let categoriesContainerDiv = document.getElementById("categories-container");
     categoriesContainerDiv.innerHTML = "";
-    fetchRestaurantsByCat(categoryId)
+    Restaurant.getRestaurantsByCat(categoryId)
 }
 
 function getDishes(restaurantId) {
     let dishesDiv = document.getElementById("restaurants-container");
     dishesDiv.innerHTML = "";
-    fetchDishesForObject(restaurantId, "restaurant") 
+    Dish.getRestaurantDishes(restaurantId) 
 }
 
 function addLineItem(dishId) {
-    fetchDishesForObject(dishId, "lineItem")
+    LineItem.createLineItem(dishId)
 }
 
-function fetchRestaurantsByCat(category){
-    let restaurants = api.get("restaurants")
-    .then(restaurants => {
-        let filter = restaurants.data.filter( find_rest => {
-            return (find_rest.attributes.category_id === category)
-        })
-        let rests = filter.map( data => data.attributes)
-        for (let rest of rests){
-            let r = new Restaurant(rest.id, rest.name, rest.description, rest.image)
-            r.renderRestaurant();
-        }
-    })
-}
-
-function fetchDishesForObject(id, object){
-    if (object === "restaurant") {
-    let dishes = api.get("dishes")
-    .then(dishes => {
-        let filter = dishes.data.filter( find_dishes => {
-            return (find_dishes.attributes.restaurant_id === id)
-        })
-        let plates = filter.map( data => data.attributes)
-        for (let plate of plates){
-            let p = new Dish(plate.id, plate.name, plate.description, plate.price, plate.image, plate.restaurant_id)
-            p.renderDish();
-        }
-    })
-    } else {
-        let dishes = api.get(`dishes/${id}`)
-        .then(dish => {
-        let dishAdd = dish.data.attributes
-        let jsLineItem = {
-            order_id: currentOrder[0].id,
-            dish_id: dishAdd.id
-        }
-        createLineItem(jsLineItem);
-        })
-    }
-}
-
-function fetchOrderDishes(currentOrderId, lineItemId) {
-    let Order = api.get(`orders/${currentOrderId}`)
+function fetchOrderDishes(workingOrderId, lineItemId) {
+    let Order = api.get(`orders/${workingOrderId}`)
     .then(order => {
         let dish = order.data.attributes.dishes.find( find_dish => {
             return find_dish.id === (order.data.attributes.line_items.find( find_li => {
@@ -92,7 +54,7 @@ function fetchOrderDishes(currentOrderId, lineItemId) {
         })
         let hash = {
             id: lineItemId,
-            order_id: currentOrderId,
+            order_id: workingOrderId,
             dish_id: dish.id,
             dish_name: dish.name,
             dish_price: dish.price
@@ -100,11 +62,11 @@ function fetchOrderDishes(currentOrderId, lineItemId) {
         let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
         l.renderDishLineItem()
     })
-    fetchOrderForCalc(currentOrderId)
+    fetchOrderForCalc(workingOrderId)
 }
 
-function fetchOrderForCalc(id) {
-    let Order = api.get(`orders/${id}`)
+function fetchOrderForCalc(workingOrderId) {
+    let Order = api.get(`orders/${workingOrderId}`)
     .then(order => {
         let dishes = order.data.attributes.dishes
         let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
@@ -115,14 +77,14 @@ function fetchOrderForCalc(id) {
             tax: orderTax,
             total: orderTotal,
         }
-    updateOrder(id, orderUpdate)
+    updateOrder(workingOrderId, orderUpdate)
     })
 }
 
-function updateOrder(id, object) {
+function updateOrder(workingOrderId, orderUpdate) {
     let updateOrderDiv = document.getElementById("new-order-div")
     updateOrderDiv.innerHTML = ""
-    let order = api.update(`orders/${id}`, object)
+    let order = api.update(`orders/${workingOrderId}`, orderUpdate)
     .then(orders => {
         currentOrder = []
         let o = new Order(orders.id, orders.subtotal, orders.tax, orders.total, orders.customer_id)
@@ -133,7 +95,7 @@ function updateOrder(id, object) {
 function getLineItemForDelete(lineItemId) {
     let lineItem = api.delete(`line_items/${lineItemId}`)
     .then(lineItem => {
-        fetchOrderForCalc(currentOrder[0].id)
+        fetchOrderForCalc(Order.workingOrder[0].id)
     })
     let delItem = document.getElementById(`${lineItemId}`)
     delItem.remove();
@@ -141,40 +103,6 @@ function getLineItemForDelete(lineItemId) {
     if (!document.querySelector(".checkOrder")) {
         placeYourOrderDiv.innerHTML = ""
     }
-}
-
-function createCustomer(){
-    let jsCustomer = {
-        username: "",
-        email: ""
-    }
-
-    let customer = api.post("customers", jsCustomer)
-    .then(customer => {
-      let c = new Customer(customer.id, customer.username, customer.email)
-    })
-}
-
-function createOrder(){
-    let jsOrder = {
-        subtotal: 0,
-        tax: 0,
-        total: 0,
-        customer_id: currentCustomer[0].id
-    }
-
-    let order = api.post("orders", jsOrder)
-    .then(order => {
-        let o = new Order(order.id, order.subtotal, order.tax, order.total, order.customer_id)
-        o.renderNewOrder();
-    })
-}
-
-function createLineItem(object) {
-    let lineItem = api.post("line_items", object)
-    .then(lineItem => {
-        fetchOrderDishes(currentOrder[0].id, lineItem.id)
-    })
 }
 
 function createCustomerFormDivs() {
@@ -231,13 +159,13 @@ function submitCustomer(e) {
         username: userName,
         email: email
     }
-    updateCustomerPlaceOrder(currentCustomer[0].id, customerObject)
+    updateCustomerPlaceOrder(Customer.workingCustomer[0].id, customerObject)
 }
 
-function updateCustomerPlaceOrder(customerId, customerObject) {
-    let customer = api.update(`customers/${customerId}`, customerObject)
+function updateCustomerPlaceOrder(workingCustomerId, customerObject) {
+    let customer = api.update(`customers/${workingCustomerId}`, customerObject)
     .then(customer => {
-        currentCustomer = []
+        Customer.workingCustomer = []
         let c = new Customer(customer.id, customer.username, customer.email)
     })
     createThankYouMessage()

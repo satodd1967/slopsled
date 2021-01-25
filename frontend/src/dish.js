@@ -1,11 +1,36 @@
 class Dish{
-    constructor(id, name, description, price, image, restaurant_id) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.image = image;
-        this.restaurant_id = restaurant_id;
+
+    static allDishes = []
+
+    constructor(dish) {
+        this.id = dish.id;
+        this.name = dish.name;
+        this.description = dish.description;
+        this.price = dish.price;
+        this.image = dish.image;
+        this.restaurant_id = dish.restaurant_id;
+        this.restaurant = dish.restaurant;
+        Dish.allDishes.push(this)
+    }
+
+    static fetchDishes() {
+        let dishes = api.get("dishes")
+        .then(dishes => {
+            let plates = dishes.data.map( data => data.attributes)
+            for (let plate of plates){
+                let dish = new Dish(plate)
+            }
+        })
+    }
+
+    static getRestaurantDishes(restaurantId) {
+        let dishes = Dish.allDishes.filter( find_dish => {
+            return (find_dish.restaurant_id === restaurantId)
+        })
+        for (let dish of dishes){
+            console.log("dish", dish)
+            dish.renderDish();
+        }
     }
 
     renderDish() {

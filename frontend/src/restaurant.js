@@ -1,9 +1,34 @@
 class Restaurant{
-    constructor(id, name, description, image) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.image = image;
+
+    static allRestaurants = []
+
+    constructor(restaurant) {
+        this.id = restaurant.id;
+        this.name = restaurant.name;
+        this.description = restaurant.description;
+        this.image = restaurant.image;
+        this.category_id = restaurant.category_id;
+        this.dishes = restaurant.dishes;
+        Restaurant.allRestaurants.push(this)
+    }
+
+    static fetchRestaurants(){
+        let restaurants = api.get("restaurants")
+        .then(restaurants => {
+            let rests = restaurants.data.map( data => data.attributes)
+            for (let rest of rests){
+                let restaurant = new Restaurant(rest)
+            }
+        })
+    }
+
+    static getRestaurantsByCat(categoryId){
+        let restaurants = Restaurant.allRestaurants.filter( find_restaurants => {
+            return (find_restaurants.category_id === categoryId)
+        })
+        for (let restaurant of restaurants){
+            restaurant.renderRestaurant();
+        }
     }
 
     renderRestaurant() {
