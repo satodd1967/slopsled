@@ -18,6 +18,7 @@ class LineItem{
         let lineItem = api.post("line_items", jsLineItem)
         .then(lineItem => {
             let l = new LineItem(lineItem)
+            Order.workingOrderUpdate()
             fetchOrderDishes(Order.workingOrder[0].id, lineItem.id)
         })
     }
