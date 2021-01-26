@@ -45,7 +45,7 @@ function addLineItem(dishId) {
 }
 
 function fetchOrderDishes(workingOrderId, lineItemId) {
-    let Order = api.get(`orders/${workingOrderId}`)
+    let order = api.get(`orders/${workingOrderId}`)
     .then(order => {
         let dish = order.data.attributes.dishes.find( find_dish => {
             return find_dish.id === (order.data.attributes.line_items.find( find_li => {
@@ -62,23 +62,7 @@ function fetchOrderDishes(workingOrderId, lineItemId) {
         let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
         l.renderDishLineItem()
     })
-    fetchOrderForCalc(workingOrderId)
-}
-
-function fetchOrderForCalc(workingOrderId) {
-    let Order = api.get(`orders/${workingOrderId}`)
-    .then(order => {
-        let dishes = order.data.attributes.dishes
-        let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
-        let orderTax = ((orderSubTotal * 1.08) - orderSubTotal).toFixed(2)
-        let orderTotal = ((parseFloat(orderSubTotal) + parseFloat(orderTax))).toFixed(2)
-        let orderUpdate = {
-            subtotal: orderSubTotal,
-            tax: orderTax,
-            total: orderTotal,
-        }
-    updateOrder(workingOrderId, orderUpdate)
-    })
+    Order.fetchOrderForCalc(workingOrderId)
 }
 
 function updateOrder(workingOrderId, orderUpdate) {
@@ -86,10 +70,8 @@ function updateOrder(workingOrderId, orderUpdate) {
     updateOrderDiv.innerHTML = ""
     let order = api.update(`orders/${workingOrderId}`, orderUpdate)
     .then(order => {
-        console.log("order", order.data.attributes)
         Order.workingOrder = []
         let o = new Order(order.data.attributes)
-        console.log("o", o)
         o.renderNewOrder()
     })
 }

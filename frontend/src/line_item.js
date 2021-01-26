@@ -19,7 +19,6 @@ class LineItem{
         .then(lineItem => {
             let l = new LineItem(lineItem)
             fetchOrderDishes(Order.workingOrder[0].id, lineItem.id)
-            
         })
     }
 
