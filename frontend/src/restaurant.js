@@ -42,7 +42,7 @@ class Restaurant{
         let image = document.createElement("img")
             image.src = `${this.image}`;
             image.alt = "Click Here";
-            image.style.width = "75%";
+            image.style.width = "60%";
             image.addEventListener("click", () => { getDishes(this.id); });
         u.append(image,name, description)
         restaurantsContainerDiv.append(u)
