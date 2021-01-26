@@ -18,9 +18,21 @@ class LineItem{
         let lineItem = api.post("line_items", jsLineItem)
         .then(lineItem => {
             let l = new LineItem(lineItem)
-            Order.workingOrderUpdate()
             fetchOrderDishes(Order.workingOrder[0].id, lineItem.id)
         })
+    }
+
+    static getLineItemForDelete(lineItemId) {
+        let lineItem = api.delete(`line_items/${lineItemId}`)
+        .then(lineItem => {
+            Order.fetchOrderForCalc(Order.workingOrder[0].id)
+        })
+        let delItem = document.getElementById(`${lineItemId}`)
+        delItem.remove();
+        let placeYourOrderDiv = document.getElementById("place-your-order")
+        if (!document.querySelector(".checkOrder")) {
+            placeYourOrderDiv.innerHTML = ""
+        }
     }
 
 }

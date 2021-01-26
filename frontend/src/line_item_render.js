@@ -19,7 +19,7 @@ class LineItemRender{
             price.innerText = `${this.dish_price}`
         let deleteButton = document.createElement("button");
             deleteButton.textContent = "delete";
-            deleteButton.addEventListener("click", () => { getLineItemForDelete(this.id); });
+            deleteButton.addEventListener("click", () => { LineItem.getLineItemForDelete(this.id); });
         details.append(deleteButton, name, price);
         u.append(details);
         lineItemContainerDiv.append(u);

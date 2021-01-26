@@ -65,19 +65,6 @@ function fetchOrderDishes(workingOrderId, lineItemId) {
     Order.fetchOrderForCalc(workingOrderId)
 }
 
-function getLineItemForDelete(lineItemId) {
-    let lineItem = api.delete(`line_items/${lineItemId}`)
-    .then(lineItem => {
-        Order.fetchOrderForCalc(Order.workingOrder[0].id)
-    })
-    let delItem = document.getElementById(`${lineItemId}`)
-    delItem.remove();
-    let placeYourOrderDiv = document.getElementById("place-your-order")
-    if (!document.querySelector(".checkOrder")) {
-        placeYourOrderDiv.innerHTML = ""
-    }
-}
-
 function createCustomerFormDivs() {
     wrapper = document.getElementById("wrapper")
     customerFormBox = document.createElement("div")

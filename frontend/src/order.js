@@ -55,14 +55,14 @@ class Order{
         })
     }
 
-    static workingOrderUpdate() {
-        let order = api.get(`orders/${this.workingOrder[0].id}`)
-        .then(order  => {
-            this.workingOrder = []
-            this.workingOrder.push(order)
-            console.log(Order.workingOrder[0])
-        })
-    }
+    // static workingOrderUpdate() {
+    //     let order = api.get(`orders/${this.workingOrder[0].id}`)
+    //     .then(order  => {
+    //         this.workingOrder = []
+    //         this.workingOrder.push(order)
+    //         console.log(Order.workingOrder[0])
+    //     })
+    // }
 
     renderNewOrder(){
         let newOrderDiv = document.getElementById("new-order-div")
