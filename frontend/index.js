@@ -65,21 +65,10 @@ function fetchOrderDishes(workingOrderId, lineItemId) {
     Order.fetchOrderForCalc(workingOrderId)
 }
 
-function updateOrder(workingOrderId, orderUpdate) {
-    let updateOrderDiv = document.getElementById("new-order-div")
-    updateOrderDiv.innerHTML = ""
-    let order = api.update(`orders/${workingOrderId}`, orderUpdate)
-    .then(order => {
-        Order.workingOrder = []
-        let o = new Order(order.data.attributes)
-        o.renderNewOrder()
-    })
-}
-
 function getLineItemForDelete(lineItemId) {
     let lineItem = api.delete(`line_items/${lineItemId}`)
     .then(lineItem => {
-        fetchOrderForCalc(Order.workingOrder[0].id)
+        Order.fetchOrderForCalc(Order.workingOrder[0].id)
     })
     let delItem = document.getElementById(`${lineItemId}`)
     delItem.remove();

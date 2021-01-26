@@ -29,7 +29,7 @@ class Order{
     }
 
     static fetchOrderForCalc(workingOrderId) {
-        let Order = api.get(`orders/${workingOrderId}`)
+        let order = api.get(`orders/${workingOrderId}`)
         .then(order => {
             let dishes = order.data.attributes.dishes
             let orderSubTotal = (dishes.reduce ( (total, dish) => dish.price + total, 0)).toFixed(2)
@@ -40,7 +40,18 @@ class Order{
                 tax: orderTax,
                 total: orderTotal,
             }
-        updateOrder(workingOrderId, orderUpdate)
+        this.updateOrder(workingOrderId, orderUpdate)
+        })
+    }
+
+    static updateOrder(workingOrderId, orderUpdate) {
+        let updateOrderDiv = document.getElementById("new-order-div")
+        updateOrderDiv.innerHTML = ""
+        let order = api.update(`orders/${workingOrderId}`, orderUpdate)
+        .then(order => {
+            Order.workingOrder = []
+            let o = new Order(order.data.attributes)
+            o.renderNewOrder()
         })
     }
 
