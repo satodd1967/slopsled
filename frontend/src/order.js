@@ -75,5 +75,36 @@ class Order{
         </ul>
         ` 
     }
-}
 
+    static renderOrderLineItem(order, lineItemId) {
+        let lineItem = order.data.attributes.line_items.find( find_lineItem => {
+            return (find_lineItem.id === lineItemId)
+        })
+        let dish = order.data.attributes.dishes.find( find_dish => {
+            return (find_dish.id === lineItem.dish_id)
+        })
+        let lineItemContainerDiv = document.getElementById("line-item-container")
+        let u = document.createElement("ul");
+            u.id= `${lineItem.id}`;
+            u.setAttribute("class", "checkOrder");
+        let details = document.createElement("li");
+        let name = document.createElement("span");
+            name.innerText = ` ${dish.name} - `;
+        let price = document.createElement("span");
+            price.innerText = `${dish.price}`
+        let deleteButton = document.createElement("button");
+            deleteButton.textContent = "delete";
+            deleteButton.addEventListener("click", () => { LineItem.getLineItemForDelete(lineItem.id); });
+        details.append(deleteButton, name, price);
+        u.append(details);
+        lineItemContainerDiv.append(u);
+        let placeYourOrderDiv = document.getElementById("place-your-order");
+        if (!document.getElementById("order-button")) {
+            let orderButton  = document.createElement("button");
+            orderButton.id= "order-button";
+            orderButton.textContent = "Place Order";
+            orderButton.addEventListener("click", createCustomerFormDivs);
+            placeYourOrderDiv.append(orderButton);
+        }
+    }
+}

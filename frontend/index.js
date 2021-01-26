@@ -47,20 +47,7 @@ function addLineItem(dishId) {
 function fetchOrderDishes(workingOrderId, lineItemId) {
     let order = api.get(`orders/${workingOrderId}`)
     .then(order => {
-        let dish = order.data.attributes.dishes.find( find_dish => {
-            return find_dish.id === (order.data.attributes.line_items.find( find_li => {
-                return find_li.id === lineItemId
-            })).dish_id
-        })
-        let hash = {
-            id: lineItemId,
-            order_id: workingOrderId,
-            dish_id: dish.id,
-            dish_name: dish.name,
-            dish_price: dish.price
-        }
-        let l = new LineItemRender(hash.id, hash.order_id, hash.dish_id, hash.dish_name, hash.dish_price)
-        l.renderDishLineItem()
+        Order.renderOrderLineItem(order, lineItemId)
     })
     Order.fetchOrderForCalc(workingOrderId)
 }
