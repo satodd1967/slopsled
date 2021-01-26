@@ -28,6 +28,14 @@ class Order{
         })
     }
 
+    static fetchOrderDishes(workingOrderId, lineItemId) {
+        let order = api.get(`orders/${workingOrderId}`)
+        .then(order => {
+            this.renderOrderLineItem(order, lineItemId)
+        })
+        this.fetchOrderForCalc(workingOrderId)
+    }
+
     static fetchOrderForCalc(workingOrderId) {
         let order = api.get(`orders/${workingOrderId}`)
         .then(order => {

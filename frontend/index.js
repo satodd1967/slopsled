@@ -44,14 +44,6 @@ function addLineItem(dishId) {
     LineItem.createLineItem(dishId)
 }
 
-function fetchOrderDishes(workingOrderId, lineItemId) {
-    let order = api.get(`orders/${workingOrderId}`)
-    .then(order => {
-        Order.renderOrderLineItem(order, lineItemId)
-    })
-    Order.fetchOrderForCalc(workingOrderId)
-}
-
 function createCustomerFormDivs() {
     wrapper = document.getElementById("wrapper")
     customerFormBox = document.createElement("div")
