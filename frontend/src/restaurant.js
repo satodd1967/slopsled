@@ -37,6 +37,26 @@ class Restaurant{
         headerDiv.append(categories);
     }
 
+    static restaurantsNavBar() {
+        let dishesDiv = document.getElementById("restaurants-container");
+        dishesDiv.innerHTML = "";
+        let dishesContainerDiv = document.getElementById("dishes-container")
+        dishesContainerDiv.innerHTML = ""
+        let headerRestaurantsButton  = document.getElementById("headerRestaurantsButton")
+        let categoryId = headerRestaurantsButton.data
+        headerRestaurantsButton.remove()
+        this.renderRestaurantsByCat(categoryId)
+    }
+
+    static renderRestaurantsByCat(categoryId) {
+        let rests = this.allRestaurants.filter( filter_restaurants => {
+            return (filter_restaurants.category_id === parseInt(categoryId))
+        });
+        for (let rest of rests){
+            rest.renderRestaurant();
+        }
+    }
+
     renderRestaurant() {
         let restaurantsContainerDiv = document.getElementById("restaurants-container")
         let u = document.createElement("ul")

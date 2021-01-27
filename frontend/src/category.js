@@ -39,6 +39,10 @@ class Category{
         dishesContainerDiv.innerHTML = ""
         let headerCategoriesButton  = document.getElementById("headerCategoriesButton")
         headerCategoriesButton.remove()
+        if (document.getElementById("headerRestaurantsButton")) {
+            let headerRestaurantsButton = document.getElementById("headerRestaurantsButton")
+            headerRestaurantsButton.remove()
+        }
         this.renderCategories()
     }
 
