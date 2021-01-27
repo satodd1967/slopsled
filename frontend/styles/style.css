@@ -93,3 +93,11 @@
     margin-top: 3px;
     text-align: justify;
 }
+
+.navbar a {
+    color: #bbb;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
