@@ -23,7 +23,26 @@ class Category{
         })
     }
 
-    renderCategory(category) {
+    static renderCategories() {
+        let cats = this.allCategories;
+        for (let cat of cats){
+            cat.renderCategory();
+        }
+    }
+
+    static categoriesNavBar() {
+        let categoriesContainerDiv = document.getElementById("categories-container");
+        categoriesContainerDiv.innerHTML = "";
+        let dishesDiv = document.getElementById("restaurants-container");
+        dishesDiv.innerHTML = "";
+        let dishesContainerDiv = document.getElementById("dishes-container")
+        dishesContainerDiv.innerHTML = ""
+        let headerCategoriesButton  = document.getElementById("headerCategoriesButton")
+        headerCategoriesButton.remove()
+        this.renderCategories()
+    }
+
+    renderCategory() {
         let categoriesContainerDiv = document.getElementById("categories-container")
         let u = document.createElement("ul")
         let name = document.createElement("h4")

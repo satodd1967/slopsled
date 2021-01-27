@@ -29,6 +29,12 @@ class Restaurant{
         for (let restaurant of restaurants){
             restaurant.renderRestaurant();
         }
+        let headerDiv = document.getElementById("header");
+        let categories = document.createElement("button");
+        categories.textContent = "Categories";
+        categories.id= "headerCategoriesButton"
+        categories.addEventListener("click", () => { Category.categoriesNavBar(); });
+        headerDiv.append(categories);
     }
 
     renderRestaurant() {
