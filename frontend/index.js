@@ -28,10 +28,6 @@ function getDishes(restaurantId) {
 
 function addLineItem(dishId) {
     LineItem.createLineItem(dishId)
-    startOver()
-}
-
-function startOver() {
     if (elements.headerStartOverButton.style.display= "none") {
         elements.headerStartOverButton.style.display= "inline"
     }
