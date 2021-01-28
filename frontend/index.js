@@ -6,21 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Customer.createCustomer()
     Restaurant.fetchRestaurants()
     Dish.fetchDishes()
-    start()
 })
-
-function start(){
-    const startImageDiv = document.getElementById("start-image")
-    const startImage = document.createElement('img')
-    startImage.src = "images/StartOrder.png";
-    startImage.alt = "Click Here";
-    startImage.style.width = "40%";
-    startImage.addEventListener("click", getCategories)
-    startImageDiv.append(startImage);
-    elements.headerCategoriesButton.style.display= "none"
-    elements.headerRestaurantsButton.style.display= "none"
-    elements.headerStartOverButton.style.display= "none"
-}
 
 function getCategories() {
     let startImageDiv = document.getElementById("start-image");
