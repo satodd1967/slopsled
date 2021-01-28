@@ -33,13 +33,12 @@ class Dish{
         let restaurant = Restaurant.allRestaurants.find( restaurant_find => {
             return (restaurant_find.id === restaurantId)
         })
-        let headerDiv = document.getElementById("header");
         let restaurants = document.createElement("button");
         restaurants.textContent = "Restaurants";
         restaurants.id= "headerRestaurantsButton"
         restaurants.data= `${restaurant.category_id}`
         restaurants.addEventListener("click", () => { Restaurant.restaurantsNavBar(); });
-        headerDiv.append(restaurants);
+        elements.headerDiv.append(restaurants);
     }
 
     renderDish() {
