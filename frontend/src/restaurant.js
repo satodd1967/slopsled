@@ -29,19 +29,14 @@ class Restaurant{
         for (let restaurant of restaurants){
             restaurant.renderRestaurant();
         }
-        let categories = document.createElement("button");
-        categories.textContent = "Categories";
-        categories.id= "headerCategoriesButton"
-        categories.addEventListener("click", () => { Category.categoriesNavBar(); });
-        elements.headerDiv.append(categories);
+        elements.headerCategoriesButton.style= "inline"
     }
 
     static restaurantsNavBar() {
         elements.restaurantsContainerDiv.innerHTML = "";
         elements.dishesContainerDiv.innerHTML = ""
-        let headerRestaurantsButton  = document.getElementById("headerRestaurantsButton")
-        let categoryId = headerRestaurantsButton.data
-        headerRestaurantsButton.remove()
+        let categoryId = elements.headerRestaurantsButton.data
+        elements.headerRestaurantsButton.style.display= "none"
         this.renderRestaurantsByCat(categoryId)
     }
 

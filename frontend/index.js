@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     api = new ApiCall
     service = new Service
     elements = new Element
+    elements.createEventListeners()
     Customer.createCustomer()
     Restaurant.fetchRestaurants()
     Dish.fetchDishes()
@@ -16,6 +17,9 @@ function start(){
     startImage.style.width = "40%";
     startImage.addEventListener("click", getCategories)
     startImageDiv.append(startImage);
+    elements.headerCategoriesButton.style.display= "none"
+    elements.headerRestaurantsButton.style.display= "none"
+    elements.headerStartOverButton.style.display= "none"
 }
 
 function getCategories() {
@@ -47,13 +51,8 @@ function addLineItem(dishId) {
 }
 
 function startOver() {
-    if (!document.getElementById("startOverButton")) {
-        let headerDiv = document.getElementById("header");
-        let startOver = document.createElement("button");
-        startOver.textContent = "Start Over";
-        startOver.id= "startOverButton"
-        startOver.addEventListener("click", () => { location.reload(); });
-        headerDiv.append(startOver);
+    if (elements.headerStartOverButton.style.display= "none") {
+        elements.headerStartOverButton.style.display= "inline"
     }
 }
 

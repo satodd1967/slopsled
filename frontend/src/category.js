@@ -34,8 +34,7 @@ class Category{
         elements.categoriesContainerDiv.innerHTML = "";
         elements.restaurantsContainerDiv.innerHTML = "";
         elements.dishesContainerDiv.innerHTML = ""
-        let headerCategoriesButton  = document.getElementById("headerCategoriesButton")
-        headerCategoriesButton.remove()
+        elements.headerCategoriesButton.style.display= "none"
         if (document.getElementById("headerRestaurantsButton")) {
             let headerRestaurantsButton = document.getElementById("headerRestaurantsButton")
             headerRestaurantsButton.remove()
