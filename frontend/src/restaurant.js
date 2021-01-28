@@ -29,19 +29,16 @@ class Restaurant{
         for (let restaurant of restaurants){
             restaurant.renderRestaurant();
         }
-        let headerDiv = document.getElementById("header");
         let categories = document.createElement("button");
         categories.textContent = "Categories";
         categories.id= "headerCategoriesButton"
         categories.addEventListener("click", () => { Category.categoriesNavBar(); });
-        headerDiv.append(categories);
+        elements.headerDiv.append(categories);
     }
 
     static restaurantsNavBar() {
-        let dishesDiv = document.getElementById("restaurants-container");
-        dishesDiv.innerHTML = "";
-        let dishesContainerDiv = document.getElementById("dishes-container")
-        dishesContainerDiv.innerHTML = ""
+        elements.restaurantsContainerDiv.innerHTML = "";
+        elements.dishesContainerDiv.innerHTML = ""
         let headerRestaurantsButton  = document.getElementById("headerRestaurantsButton")
         let categoryId = headerRestaurantsButton.data
         headerRestaurantsButton.remove()
@@ -58,7 +55,6 @@ class Restaurant{
     }
 
     renderRestaurant() {
-        let restaurantsContainerDiv = document.getElementById("restaurants-container")
         let u = document.createElement("ul")
         let name = document.createElement("h4")
             name.innerText = `${this.name}`
@@ -71,7 +67,7 @@ class Restaurant{
             image.style.width = "60%";
             image.addEventListener("click", () => { getDishes(this.id); });
         u.append(image,name, description)
-        restaurantsContainerDiv.append(u)
+        elements.restaurantsContainerDiv.append(u)
     }
 
 }
