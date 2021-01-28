@@ -12,6 +12,8 @@ class Element {
         this.headerStartOverButton = document.getElementById("header-start-over-button");
         this.startImageDiv = document.getElementById("start-image");
         this.startImage = document.getElementById("start-image-pic")
+        this.lineItemsHeaderDiv = document.getElementById("line-items-header")
+        this.orderDiv = document.getElementById("order")
     }
 
     createEventListeners() {
