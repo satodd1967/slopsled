@@ -10,17 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function getCategories() {
     elements.startImageDiv.remove();
-    // let lineItemsHeaderDiv = document.getElementById("line-items-header")
     elements.lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
-    // let orderDiv = document.getElementById("order")
     elements.orderDiv.innerHTML = "<h4>Your Order</h4>"
     Order.createOrder()
     Category.fetchCategories();
 }
 
 function getRestaurants(categoryId) {
-    let categoriesContainerDiv = document.getElementById("categories-container");
-    categoriesContainerDiv.innerHTML = "";
+    elements.categoriesContainerDiv.innerHTML = "";
     Restaurant.getRestaurantsByCat(categoryId)
 }
 
