@@ -42,7 +42,6 @@ class Dish{
     }
 
     renderDish() {
-        let dishesContainerDiv = document.getElementById("dishes-container")
         let u = document.createElement("ul")
         let name = document.createElement("h4")
             name.innerText = `${this.name}`
@@ -60,7 +59,7 @@ class Dish{
             addButton.textContent = "Add"
             addButton.addEventListener("click", () => { addLineItem(this.id); });
         u.append(image, name, description, price, addButton)
-        dishesContainerDiv.append(u)
+        elements.dishesContainerDiv.append(u)
     }
 
 }
