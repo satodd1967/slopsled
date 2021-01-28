@@ -53,8 +53,7 @@ class Order{
     }
 
     static updateOrder(workingOrderId, orderUpdate) {
-        let updateOrderDiv = document.getElementById("new-order-div")
-        updateOrderDiv.innerHTML = ""
+        elements.newOrderDiv.innerHTML = ""
         let order = api.update(`orders/${workingOrderId}`, orderUpdate)
         .then(order => {
             Order.workingOrder = []
@@ -73,8 +72,7 @@ class Order{
     // }
 
     renderNewOrder(){
-        let newOrderDiv = document.getElementById("new-order-div")
-        newOrderDiv.innerHTML +=
+        elements.newOrderDiv.innerHTML +=
         `
         <ul>
         <li>Subtotal: ${this.subtotal}</li>
@@ -91,7 +89,6 @@ class Order{
         let dish = order.data.attributes.dishes.find( find_dish => {
             return (find_dish.id === lineItem.dish_id)
         })
-        let lineItemContainerDiv = document.getElementById("line-item-container")
         let u = document.createElement("ul");
             u.id= `${lineItem.id}`;
             u.setAttribute("class", "checkOrder");
@@ -105,14 +102,13 @@ class Order{
             deleteButton.addEventListener("click", () => { LineItem.getLineItemForDelete(lineItem.id); });
         details.append(deleteButton, name, price);
         u.append(details);
-        lineItemContainerDiv.append(u);
-        let placeYourOrderDiv = document.getElementById("place-your-order");
+        elements.lineItemContainerDiv.append(u);
         if (!document.getElementById("order-button")) {
             let orderButton  = document.createElement("button");
             orderButton.id= "order-button";
             orderButton.textContent = "Place Order";
             orderButton.addEventListener("click", createCustomerFormDivs);
-            placeYourOrderDiv.append(orderButton);
+            elements.placeYourOrderDiv.append(orderButton);
         }
     }
 }

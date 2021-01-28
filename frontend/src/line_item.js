@@ -29,9 +29,8 @@ class LineItem{
         })
         let delItem = document.getElementById(`${lineItemId}`)
         delItem.remove();
-        let placeYourOrderDiv = document.getElementById("place-your-order")
         if (!document.querySelector(".checkOrder")) {
-            placeYourOrderDiv.innerHTML = ""
+            elements.placeYourOrderDiv.innerHTML = ""
         }
     }
 
