@@ -22,8 +22,7 @@ function getRestaurants(categoryId) {
 }
 
 function getDishes(restaurantId) {
-    let dishesDiv = document.getElementById("restaurants-container");
-    dishesDiv.innerHTML = "";
+    elements.restaurantsContainerDiv.innerHTML = "";
     Dish.getRestaurantDishes(restaurantId) 
 }
 
