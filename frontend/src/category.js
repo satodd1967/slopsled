@@ -31,12 +31,9 @@ class Category{
     }
 
     static categoriesNavBar() {
-        let categoriesContainerDiv = document.getElementById("categories-container");
-        categoriesContainerDiv.innerHTML = "";
-        let dishesDiv = document.getElementById("restaurants-container");
-        dishesDiv.innerHTML = "";
-        let dishesContainerDiv = document.getElementById("dishes-container")
-        dishesContainerDiv.innerHTML = ""
+        elements.categoriesContainerDiv.innerHTML = "";
+        elements.restaurantsContainerDiv.innerHTML = "";
+        elements.dishesContainerDiv.innerHTML = ""
         let headerCategoriesButton  = document.getElementById("headerCategoriesButton")
         headerCategoriesButton.remove()
         if (document.getElementById("headerRestaurantsButton")) {
@@ -47,7 +44,6 @@ class Category{
     }
 
     renderCategory() {
-        let categoriesContainerDiv = document.getElementById("categories-container")
         let u = document.createElement("ul")
         let name = document.createElement("h4")
             name.className= "list-name"
@@ -60,7 +56,7 @@ class Category{
         let description = document.createElement("li")
             description.innerText = `${this.description}`
         u.append(image, name, description)
-        categoriesContainerDiv.append(u)
+        elements.categoriesContainerDiv.append(u)
     }
 }
 

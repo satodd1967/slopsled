@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     api = new ApiCall
     service = new Service
+    elements = new Element
     Customer.createCustomer()
     Restaurant.fetchRestaurants()
     Dish.fetchDishes()
@@ -42,6 +43,18 @@ function getDishes(restaurantId) {
 
 function addLineItem(dishId) {
     LineItem.createLineItem(dishId)
+    startOver()
+}
+
+function startOver() {
+    if (!document.getElementById("startOverButton")) {
+        let headerDiv = document.getElementById("header");
+        let startOver = document.createElement("button");
+        startOver.textContent = "Start Over";
+        startOver.id= "startOverButton"
+        startOver.addEventListener("click", () => { location.reload(); });
+        headerDiv.append(startOver);
+    }
 }
 
 function createCustomerFormDivs() {
