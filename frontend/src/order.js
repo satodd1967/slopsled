@@ -26,7 +26,14 @@ class Order{
             let o = new Order(order)
             o.renderOrder();
         })
-    }
+    } 
+
+    // static updateWorkingOrder(orderId) {
+    //     let order = api.get(`orders/${orderId}`)
+    //     .then(order => {
+    //         let o = new Order(order)
+    //     })
+    // }
 
     static fetchOrderDishes(workingOrderId, lineItemId) {
         let order = api.get(`orders/${workingOrderId}`)
