@@ -14,6 +14,12 @@ class Element {
         this.startImage = document.getElementById("start-image-pic")
         this.lineItemsHeaderDiv = document.getElementById("line-items-header")
         this.orderDiv = document.getElementById("order")
+        this.wrapper = document.getElementById("wrapper")
+        this.customerFormBox = document.getElementById("customer-form-box")
+        this.customerFormDiv = document.getElementById("customer-form-div")
+        this.customerForm = document.createElement("form")
+        this.customerFormHeader = document.createElement("h4")
+        this.customerThankYou = document.createElement("h4")
     }
 
     createEventListeners() {

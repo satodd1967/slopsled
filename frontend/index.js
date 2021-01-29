@@ -34,60 +34,40 @@ function addLineItem(dishId) {
 }
 
 function createCustomerFormDivs() {
-    wrapper = document.getElementById("wrapper")
-    customerFormBox = document.createElement("div")
-    customerFormBox.id= "customer-form-box"
-    customerForm = document.createElement("div")
-    customerForm.id= "customer-form"
-    wrapper.prepend(customerFormBox)
-    customerFormBox.append(customerForm)
+    elements.customerFormBox.style.display= "block"
+    elements.customerFormDiv.style.display= "block"
     createCustomerForm()
 }
 
 function createCustomerForm() {
-    customerFormDiv = document.getElementById("customer-form")
-    let customerFormHeader = document.createElement("h4")
-    customerFormHeader.id= "customer-form-header"
-    customerFormHeader.innerHTML = 
+    elements.customerFormHeader.id= "customer-form-header"
+    elements.customerFormHeader.innerHTML = 
     `
     Please enter your information!
     `
-    let customerForm = document.createElement('form')
-    customerForm.innerHTML += 
+    elements.customerForm.innerHTML += 
     `
-    <label for="username">Username:</label>
+    <label for="username">Username:</label><br>
     <input type="text" id="username"><br>
-    <label for="email">Email:</lable></label>
-    <input type="email" id="email"><br>
+    <label for="email">Email:</lable></label><br>
+    <input type="email" id="email"><br><br>
     <input type="submit">
     `
-    customerFormDiv.append(customerFormHeader)
-    customerFormDiv.append(customerForm)
-    customerForm.addEventListener("submit", submitCustomer)
+    elements.customerForm.id= "customer-form"
+    elements.customerFormDiv.append(elements.customerFormHeader)
+    elements.customerFormDiv.append(elements.customerForm)
+    elements.customerForm.addEventListener("submit", Customer.submitCustomer)
 }
 
 function createThankYouMessage() {
-    customerFormDiv = document.getElementById("customer-form")
-    customerFormDiv.innerHTML = ""
-    customerThankYou = document.createElement("h4")
-    customerThankYou.innerHTML = "Thank you for your Order!"
-    customerFormDiv.append(customerThankYou)
+    elements.customerFormDiv.innerHTML = ""
+    elements.customerThankYou.innerHTML = "Thank you for your Order!"
+    elements.customerFormDiv.append(elements.customerThankYou)
     window.setTimeout(orderReset, 1000)
 }
 
 function orderReset() {
     location.reload()
-}
-
-function submitCustomer(e) {
-    e.preventDefault()
-    let userName = e.target.children.username.value
-    let email = e.target.children.email.value
-    let customerObject = {
-        username: userName,
-        email: email
-    }
-    updateCustomerPlaceOrder(Customer.workingCustomer[0].id, customerObject)
 }
 
 function updateCustomerPlaceOrder(workingCustomerId, customerObject) {

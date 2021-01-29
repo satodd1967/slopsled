@@ -52,10 +52,13 @@
     text-align: center;
 }
 
+#customer-form-div {
+    margin-top: 90px;
+}
+
 #customer-form {
-    text-align: right;
-    margin-right: 89px;
-    margin-top: 100px;
+    margin-left: 32%;
+    text-align: justify;
 }
 
 #customer-form-box {

@@ -23,4 +23,15 @@ class Customer{
         })
     }
 
+    static submitCustomer(e) {
+        e.preventDefault()
+        let userName = e.target.children.username.value
+        let email = e.target.children.email.value
+        let customerObject = {
+            username: userName,
+            email: email
+        }
+        updateCustomerPlaceOrder(Customer.workingCustomer[0].id, customerObject)
+    }
+
 }
