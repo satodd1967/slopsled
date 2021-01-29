@@ -31,7 +31,16 @@ class Customer{
             username: userName,
             email: email
         }
-        updateCustomerPlaceOrder(Customer.workingCustomer[0].id, customerObject)
+        Customer.updateCustomerPlaceOrder(Customer.workingCustomer[0].id, customerObject)
+    }
+
+    static updateCustomerPlaceOrder(workingCustomerId, customerObject) {
+        let customer = api.update(`customers/${workingCustomerId}`, customerObject)
+        .then(customer => {
+            Customer.workingCustomer = []
+            let c = new Customer(customer.id, customer.username, customer.email)
+        })
+        createThankYouMessage()
     }
 
 }
