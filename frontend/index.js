@@ -18,7 +18,7 @@ function startOrder() {
 
 function getRestaurants(categoryId) {
     elements.categoriesContainerDiv.innerHTML = "";
-    Restaurant.getRestaurantsByCat(categoryId)
+    Restaurant.renderRestaurantsByCat(categoryId)
 }
 
 function getDishes(restaurantId) {

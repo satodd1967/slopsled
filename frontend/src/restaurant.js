@@ -22,7 +22,7 @@ class Restaurant{
         })
     }
 
-    static getRestaurantsByCat(categoryId){
+    static renderRestaurantsByCat(categoryId){
         let restaurants = Restaurant.allRestaurants.filter( find_restaurants => {
             return (find_restaurants.category_id === parseInt(categoryId))
         })
@@ -37,7 +37,7 @@ class Restaurant{
         elements.dishesContainerDiv.innerHTML = ""
         let categoryId = elements.headerRestaurantsButton.data
         elements.headerRestaurantsButton.style.display= "none"
-        this.getRestaurantsByCat(categoryId)
+        this.renderRestaurantsByCat(categoryId)
     }
 
     renderRestaurant() {
