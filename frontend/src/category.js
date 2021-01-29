@@ -36,7 +36,6 @@ class Category{
             name.innerText = `${this.name}`
         let image = document.createElement("img")
             image.src = `${this.image}`;
-            image.alt = "Click Here";
             image.style.width = "60%";
             image.addEventListener("click", () => { getRestaurants(this.id); });
         let description = document.createElement("li")
