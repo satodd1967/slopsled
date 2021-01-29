@@ -3,6 +3,11 @@
     box-sizing: border-box;
   }
 
+html {
+    height: 100%;
+    background-color: #bbb
+}
+
 #header {
     background-color: gray;
     padding: 10px;
