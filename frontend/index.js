@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Dish.fetchDishes()
 })
 
-function getCategories() {
+function startOrder() {
     elements.startImageDiv.remove();
     elements.lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     elements.orderDiv.innerHTML = "<h4>Your Order</h4>"

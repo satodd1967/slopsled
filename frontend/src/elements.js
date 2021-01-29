@@ -26,6 +26,6 @@ class Element {
         this.headerCategoriesButton.addEventListener("click", () => { Category.categoriesNavBar(); });
         this.headerRestaurantsButton.addEventListener("click", () => { Restaurant.restaurantsNavBar(); });
         this.headerStartOverButton.addEventListener("click", () => { location.reload(); });
-        this.startImage.addEventListener("click", getCategories)
+        this.startImage.addEventListener("click", startOrder)
     }
 }
