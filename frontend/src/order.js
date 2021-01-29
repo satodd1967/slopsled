@@ -24,7 +24,7 @@ class Order{
         let order = api.post("orders", jsOrder)
         .then(order => {
             let o = new Order(order)
-            o.renderNewOrder();
+            o.renderOrder();
         })
     }
 
@@ -58,20 +58,11 @@ class Order{
         .then(order => {
             Order.workingOrder = []
             let o = new Order(order.data.attributes)
-            o.renderNewOrder()
+            o.renderOrder()
         })
     }
 
-    // static workingOrderUpdate() {
-    //     let order = api.get(`orders/${this.workingOrder[0].id}`)
-    //     .then(order  => {
-    //         this.workingOrder = []
-    //         this.workingOrder.push(order)
-    //         console.log(Order.workingOrder[0])
-    //     })
-    // }
-
-    renderNewOrder(){
+    renderOrder(){
         elements.newOrderDiv.innerHTML +=
         `
         <ul>

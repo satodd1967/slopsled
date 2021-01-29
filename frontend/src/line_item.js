@@ -9,7 +9,6 @@ class LineItem{
         LineItem.workingOrderLineItems.push(this)
     }
 
-    
     static createLineItem(dishId) {
         let jsLineItem = {
             order_id: Order.workingOrder[0].id,
