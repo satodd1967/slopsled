@@ -18,7 +18,6 @@ class Category{
             let cats = categories.data.map( data => data.attributes)
             for (let cat of cats){
                 let category = new Category(cat)
-                category.renderCategory();
             }
         })
     }

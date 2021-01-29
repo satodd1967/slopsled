@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     elements = new Element
     elements.createEventListeners()
     Customer.createCustomer()
+    Category.fetchCategories()
     Restaurant.fetchRestaurants()
     Dish.fetchDishes()
 })
@@ -12,7 +13,7 @@ function startOrder() {
     elements.lineItemsHeaderDiv.innerHTML = "<h4>Your Dishes</h4>"
     elements.orderDiv.innerHTML = "<h4>Your Order</h4>"
     Order.createOrder()
-    Category.fetchCategories();
+    Category.renderCategories(Category.allCategories);
 }
 
 function getRestaurants(categoryId) {
