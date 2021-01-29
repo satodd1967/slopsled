@@ -50,9 +50,8 @@ class Category{
         elements.restaurantsContainerDiv.innerHTML = "";
         elements.dishesContainerDiv.innerHTML = ""
         elements.headerCategoriesButton.style.display= "none"
-        if (document.getElementById("headerRestaurantsButton")) {
-            let headerRestaurantsButton = document.getElementById("headerRestaurantsButton")
-            headerRestaurantsButton.remove()
+        if (elements.headerRestaurantsButton.style.display= "inline") {
+            elements.headerRestaurantsButton.style.display= "none"
         }
         this.renderCategories()
     }
