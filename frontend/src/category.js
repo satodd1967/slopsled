@@ -29,18 +29,6 @@ class Category{
         }
     }
 
-    static categoriesNavBar() {
-        elements.categoriesContainerDiv.innerHTML = "";
-        elements.restaurantsContainerDiv.innerHTML = "";
-        elements.dishesContainerDiv.innerHTML = ""
-        elements.headerCategoriesButton.style.display= "none"
-        if (document.getElementById("headerRestaurantsButton")) {
-            let headerRestaurantsButton = document.getElementById("headerRestaurantsButton")
-            headerRestaurantsButton.remove()
-        }
-        this.renderCategories()
-    }
-
     renderCategory() {
         let u = document.createElement("ul")
         let name = document.createElement("h4")
@@ -55,6 +43,18 @@ class Category{
             description.innerText = `${this.description}`
         u.append(image, name, description)
         elements.categoriesContainerDiv.append(u)
+    }
+
+    static categoriesNavBar() {
+        elements.categoriesContainerDiv.innerHTML = "";
+        elements.restaurantsContainerDiv.innerHTML = "";
+        elements.dishesContainerDiv.innerHTML = ""
+        elements.headerCategoriesButton.style.display= "none"
+        if (document.getElementById("headerRestaurantsButton")) {
+            let headerRestaurantsButton = document.getElementById("headerRestaurantsButton")
+            headerRestaurantsButton.remove()
+        }
+        this.renderCategories()
     }
 }
 
