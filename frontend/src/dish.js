@@ -23,17 +23,14 @@ class Dish{
         })
     }
 
-    static getRestaurantDishes(restaurantId) {
+    static renderRestaurantDishes(restaurantId, categoryId) {
         let dishes = Dish.allDishes.filter( find_dish => {
             return (find_dish.restaurant_id === restaurantId)
         })
         for (let dish of dishes){
             dish.renderDish();
         }
-        let restaurant = Restaurant.allRestaurants.find( restaurant_find => {
-            return (restaurant_find.id === restaurantId)
-        })
-        elements.headerRestaurantsButton.data= `${restaurant.category_id}`
+        elements.headerRestaurantsButton.data= categoryId
         elements.headerRestaurantsButton.style.display= "inline"
     }
 

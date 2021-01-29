@@ -21,9 +21,9 @@ function getRestaurants(categoryId) {
     Restaurant.renderRestaurantsByCat(categoryId)
 }
 
-function getDishes(restaurantId) {
+function getDishes(restaurantId, categoryId) {
     elements.restaurantsContainerDiv.innerHTML = "";
-    Dish.getRestaurantDishes(restaurantId) 
+    Dish.renderRestaurantDishes(restaurantId, categoryId) 
 }
 
 function addLineItem(dishId) {

@@ -32,14 +32,6 @@ class Restaurant{
         elements.headerCategoriesButton.style= "inline"
     }
 
-    static restaurantsNavBar() {
-        elements.restaurantsContainerDiv.innerHTML = "";
-        elements.dishesContainerDiv.innerHTML = ""
-        let categoryId = elements.headerRestaurantsButton.data
-        elements.headerRestaurantsButton.style.display= "none"
-        this.renderRestaurantsByCat(categoryId)
-    }
-
     renderRestaurant() {
         let u = document.createElement("ul")
         let name = document.createElement("h4")
@@ -50,9 +42,17 @@ class Restaurant{
         let image = document.createElement("img")
             image.src = `${this.image}`;
             image.style.width = "60%";
-            image.addEventListener("click", () => { getDishes(this.id); });
+            image.addEventListener("click", () => { getDishes(this.id, this.category_id); });
         u.append(image,name, description)
         elements.restaurantsContainerDiv.append(u)
+    }
+
+    static restaurantsNavBar() {
+        elements.restaurantsContainerDiv.innerHTML = "";
+        elements.dishesContainerDiv.innerHTML = ""
+        let categoryId = elements.headerRestaurantsButton.data
+        elements.headerRestaurantsButton.style.display= "none"
+        this.renderRestaurantsByCat(categoryId)
     }
 
 }
