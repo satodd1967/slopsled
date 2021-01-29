@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     api = new ApiCall
-    service = new Service
     elements = new Element
     elements.createEventListeners()
     Customer.createCustomer()
