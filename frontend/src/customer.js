@@ -40,7 +40,34 @@ class Customer{
             Customer.workingCustomer = []
             let c = new Customer(customer.id, customer.username, customer.email)
         })
-        createThankYouMessage()
+        this.createThankYouMessage()
+    }
+
+    static createCustomerForm() {
+        elements.customerFormHeader.id= "customer-form-header"
+        elements.customerFormHeader.innerHTML = 
+        `
+        Please enter your information!
+        `
+        elements.customerForm.innerHTML += 
+        `
+        <label for="username">Username:</label><br>
+        <input type="text" id="username"><br>
+        <label for="email">Email:</lable></label><br>
+        <input type="email" id="email"><br><br>
+        <input type="submit">
+        `
+        elements.customerForm.id= "customer-form"
+        elements.customerFormDiv.append(elements.customerFormHeader)
+        elements.customerFormDiv.append(elements.customerForm)
+        elements.customerForm.addEventListener("submit", Customer.submitCustomer)
+    }
+    
+    static createThankYouMessage() {
+        elements.customerFormDiv.innerHTML = ""
+        elements.customerThankYou.innerHTML = "Thank you for your Order!"
+        elements.customerFormDiv.append(elements.customerThankYou)
+        window.setTimeout(orderReset, 1000)
     }
 
 }

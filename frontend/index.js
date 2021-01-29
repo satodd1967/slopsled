@@ -36,45 +36,9 @@ function addLineItem(dishId) {
 function createCustomerFormDivs() {
     elements.customerFormBox.style.display= "block"
     elements.customerFormDiv.style.display= "block"
-    createCustomerForm()
-}
-
-function createCustomerForm() {
-    elements.customerFormHeader.id= "customer-form-header"
-    elements.customerFormHeader.innerHTML = 
-    `
-    Please enter your information!
-    `
-    elements.customerForm.innerHTML += 
-    `
-    <label for="username">Username:</label><br>
-    <input type="text" id="username"><br>
-    <label for="email">Email:</lable></label><br>
-    <input type="email" id="email"><br><br>
-    <input type="submit">
-    `
-    elements.customerForm.id= "customer-form"
-    elements.customerFormDiv.append(elements.customerFormHeader)
-    elements.customerFormDiv.append(elements.customerForm)
-    elements.customerForm.addEventListener("submit", Customer.submitCustomer)
-}
-
-function createThankYouMessage() {
-    elements.customerFormDiv.innerHTML = ""
-    elements.customerThankYou.innerHTML = "Thank you for your Order!"
-    elements.customerFormDiv.append(elements.customerThankYou)
-    window.setTimeout(orderReset, 1000)
+    Customer.createCustomerForm()
 }
 
 function orderReset() {
     location.reload()
 }
-
-// function updateCustomerPlaceOrder(workingCustomerId, customerObject) {
-//     let customer = api.update(`customers/${workingCustomerId}`, customerObject)
-//     .then(customer => {
-//         Customer.workingCustomer = []
-//         let c = new Customer(customer.id, customer.username, customer.email)
-//     })
-//     createThankYouMessage()
-// }
