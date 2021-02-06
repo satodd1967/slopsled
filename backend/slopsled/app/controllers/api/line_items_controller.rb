@@ -3,15 +3,12 @@ class Api::LineItemsController < ApplicationController
 
   # GET /line_items
   def index
-    # @line_items = LineItem.all
-    # render json: @line_items
     line_items = LineItem.all
     render json: LineItemSerializer.new(line_items)
   end
 
   # GET /line_items/1
   def show
-    # render json: @line_item
     render json: LineItemSerializer.new(@line_item)
   end
 
@@ -26,14 +23,14 @@ class Api::LineItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /line_items/1
-  def update
-    if @line_item.update(line_item_params)
-      render json: @line_item
-    else
-      render json: @line_item.errors, status: :unprocessable_entity
-    end
-  end
+  # # PATCH/PUT /line_items/1
+  # def update
+  #   if @line_item.update(line_item_params)
+  #     render json: @line_item
+  #   else
+  #     render json: @line_item.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   # DELETE /line_items/1
   def destroy
