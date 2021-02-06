@@ -1,4 +1,4 @@
-class LineItemsController < ApplicationController
+class Api::LineItemsController < ApplicationController
   before_action :set_line_item, only: [:show, :update, :destroy]
 
   # GET /line_items
@@ -20,7 +20,7 @@ class LineItemsController < ApplicationController
     @line_item = LineItem.new(line_item_params)
 
     if @line_item.save
-      render json: @line_item, status: :created, location: @line_item
+      render json: @line_item, status: :created, location: api_line_item_url(@line_item)
     else
       render json: @line_item.errors, status: :unprocessable_entity
     end
