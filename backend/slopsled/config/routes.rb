@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :api do
-    resources :line_items
+    resources :line_items, only: [:index, :show, :create, :destroy]
     resources :orders
     resources :dishes
     resources :restaurants
