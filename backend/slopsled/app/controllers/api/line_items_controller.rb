@@ -23,15 +23,6 @@ class Api::LineItemsController < ApplicationController
     end
   end
 
-  # # PATCH/PUT /line_items/1
-  # def update
-  #   if @line_item.update(line_item_params)
-  #     render json: @line_item
-  #   else
-  #     render json: @line_item.errors, status: :unprocessable_entity
-  #   end
-  # end
-
   # DELETE /line_items/1
   def destroy
     @line_item.destroy
