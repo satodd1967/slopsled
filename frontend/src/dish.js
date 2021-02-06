@@ -46,7 +46,7 @@ class Dish{
         let image = document.createElement("img")
             image.src = `${this.image}`;
             image.alt = "Click Here";
-            image.style.width = "40%";
+            image.style.width = "50%";
             image.addEventListener("click", () => { addLineItem(this.id); });
         let addButton = document.createElement("button")
             addButton.textContent = "Add"
