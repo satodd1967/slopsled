@@ -3,42 +3,41 @@ class Api::RestaurantsController < ApplicationController
 
   # GET /restaurants
   def index
-    # @restaurants = Restaurant.all
-    # render json: @restaurants
     restaurants = Restaurant.all
     render json: RestaurantSerializer.new(restaurants)
   end
 
   # GET /restaurants/1
   def show
-    # render json: @restaurant
     render json: RestaurantSerializer.new(@restaurant)
   end
 
-  # POST /restaurants
-  def create
-    @restaurant = Restaurant.new(restaurant_params)
+  # Routes below are not needed in the apps current form, but would be needed if an admin was added to the app
 
-    if @restaurant.save
-      render json: @restaurant, status: :created, location: @restaurant
-    else
-      render json: @restaurant.errors, status: :unprocessable_entity
-    end
-  end
+  # # POST /restaurants
+  # def create
+  #   @restaurant = Restaurant.new(restaurant_params)
 
-  # PATCH/PUT /restaurants/1
-  def update
-    if @restaurant.update(restaurant_params)
-      render json: @restaurant
-    else
-      render json: @restaurant.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @restaurant.save
+  #     render json: @restaurant, status: :created, location: @restaurant
+  #   else
+  #     render json: @restaurant.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /restaurants/1
-  def destroy
-    @restaurant.destroy
-  end
+  # # PATCH/PUT /restaurants/1
+  # def update
+  #   if @restaurant.update(restaurant_params)
+  #     render json: @restaurant
+  #   else
+  #     render json: @restaurant.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  # # DELETE /restaurants/1
+  # def destroy
+  #   @restaurant.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
