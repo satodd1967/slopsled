@@ -3,15 +3,12 @@ class Api::OrdersController < ApplicationController
 
   # GET /orders
   def index
-    # @orders = Order.all
-    # render json: @orders
     orders = Order.all
     render json: OrderSerializer.new(orders)
   end
 
   # GET /orders/1
   def show
-    # render json: @order
     render json: OrderSerializer.new(@order)
   end
 
