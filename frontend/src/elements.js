@@ -27,5 +27,6 @@ class Element {
         this.headerRestaurantsButton.addEventListener("click", () => { Restaurant.restaurantsNavBar(); });
         this.headerStartOverButton.addEventListener("click", () => { location.reload(); });
         this.startImage.addEventListener("click", startOrder)
+        window.addEventListener("beforeunload", Customer.checkDelete)
     }
 }

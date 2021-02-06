@@ -70,4 +70,14 @@ class Customer{
         window.setTimeout(orderReset, 1000)
     }
 
+    static checkDelete() {
+        if (Customer.workingCustomer[0].username === "") {
+            let customer = api.delete(`customers/${parseInt(Customer.workingCustomer[0].id)}`)
+            .then(customer => {
+                console.log(customer)
+                return customer
+            })
+        }
+    }
+
 }
