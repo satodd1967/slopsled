@@ -12,30 +12,32 @@ class Api::CategoriesController < ApplicationController
     render json: CategorySerializer.new(@category)
   end
 
-  # POST /categories
-  def create
-    @category = Category.new(category_params)
+  # Routes below are not needed in the apps current form, but would be needed if an admin was added to the app
 
-    if @category.save
-      render json: @category, status: :created, location: @category
-    else
-      render json: @category.errors, status: :unprocessable_entity
-    end
-  end
+  # # POST /categories
+  # def create
+  #   @category = Category.new(category_params)
 
-  # PATCH/PUT /categories/1
-  def update
-    if @category.update(category_params)
-      render json: @category
-    else
-      render json: @category.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @category.save
+  #     render json: @category, status: :created, location: @category
+  #   else
+  #     render json: @category.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /categories/1
-  def destroy
-    @category.destroy
-  end
+  # # PATCH/PUT /categories/1
+  # def update
+  #   if @category.update(category_params)
+  #     render json: @category
+  #   else
+  #     render json: @category.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  # # DELETE /categories/1
+  # def destroy
+  #   @category.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

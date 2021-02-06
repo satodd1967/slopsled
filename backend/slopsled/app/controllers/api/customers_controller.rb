@@ -3,15 +3,12 @@ class Api::CustomersController < ApplicationController
 
   # GET /customers
   def index
-    # @customers = Customer.all
-    # render json: @customers
     customers = Customer.all
     render json: CustomerSerializer.new(customers)
   end
 
   # GET /customers/1
   def show
-    # render json: @customer
     render json: CustomerSerializer.new(@customer)
   end
 
