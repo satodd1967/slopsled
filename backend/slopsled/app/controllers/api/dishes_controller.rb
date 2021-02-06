@@ -3,42 +3,41 @@ class Api::DishesController < ApplicationController
 
   # GET /dishes
   def index
-    # @dishes = Dish.all
-    # render json: @dishes
     dishes = Dish.all
     render json: DishSerializer.new(dishes)
   end
 
   # GET /dishes/1
   def show
-    # render json: @dish
     render json: DishSerializer.new(@dish)
   end
 
-  # POST /dishes
-  def create
-    @dish = Dish.new(dish_params)
+  # Routes below are not needed in the apps current form, but would be needed if an admin was added to the app
 
-    if @dish.save
-      render json: @dish, status: :created, location: @dish
-    else
-      render json: @dish.errors, status: :unprocessable_entity
-    end
-  end
+  # # POST /dishes
+  # def create
+  #   @dish = Dish.new(dish_params)
 
-  # PATCH/PUT /dishes/1
-  def update
-    if @dish.update(dish_params)
-      render json: @dish
-    else
-      render json: @dish.errors, status: :unprocessable_entity
-    end
-  end
+  #   if @dish.save
+  #     render json: @dish, status: :created, location: @dish
+  #   else
+  #     render json: @dish.errors, status: :unprocessable_entity
+  #   end
+  # end
 
-  # DELETE /dishes/1
-  def destroy
-    @dish.destroy
-  end
+  # # PATCH/PUT /dishes/1
+  # def update
+  #   if @dish.update(dish_params)
+  #     render json: @dish
+  #   else
+  #     render json: @dish.errors, status: :unprocessable_entity
+  #   end
+  # end
+
+  # # DELETE /dishes/1
+  # def destroy
+  #   @dish.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
