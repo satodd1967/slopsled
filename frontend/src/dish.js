@@ -45,7 +45,6 @@ class Dish{
             price.innerText =  `${this.price}`
         let image = document.createElement("img")
             image.src = `${this.image}`;
-            image.alt = "Click Here";
             image.style.width = "50%";
             image.addEventListener("click", () => { addLineItem(this.id); });
         let addButton = document.createElement("button")
